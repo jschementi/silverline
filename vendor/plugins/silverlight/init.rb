@@ -1,4 +1,3 @@
-# Include hook code here
+require 'generator'
 require 'silverlight'
-
 ActionView::Base.send(:include, ActionView::Helpers::SilverlightHelper)

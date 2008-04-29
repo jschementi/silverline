@@ -11,13 +11,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def slindex
-  	@posts = Post.find(:all)
-  	respond_to do |format|
-  	  format.xaml
-  	end
-  end
-
   # GET /posts/1
   # GET /posts/1.xml
   def show

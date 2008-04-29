@@ -1,9 +1,8 @@
-# Controller base-class which allows children to run their actions on the client.
-#
+require 'extensions'
+
 # This is the server-side implementation which keeps track of the client 
 # actions, as well as any links to client actions in the rendered action.
 class ActionController::Base  
-  
   # list of all client actions in this controller
   cattr_reader :client_actions
   
@@ -23,6 +22,13 @@ class ActionController::Base
   def self.client(*args)
     @@client_actions ||= []
     @@client_actions = @@client_actions + args
+  end
+  
+  # Need to make sure @@client_actions is cleared after each request
+  # since this class never gets reconstructed
+  after_filter :clear_client_actions_list
+  def clear_client_actions_list
+    @@client_actions = []
   end
   
   alias :old_render :render

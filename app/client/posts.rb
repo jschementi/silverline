@@ -14,7 +14,6 @@ class Posts < SilverlightApplication
   end
 
   def _render(posts)
-    HtmlPage.window.eval("finished()")
     output = "<table>"
     output += "  <tr>"
     posts.first.keys.each do |key|

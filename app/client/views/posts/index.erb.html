@@ -1,14 +1,14 @@
 <table>
-	<tr>
-	<% @posts.first.keys.each do |key| %>
-		<th><%= key %></th>
-	<% end %>
-	</tr>"
-	<% @posts.each do |post| %>
-	<tr>
-		<% post.keys.each do |key| %>
-		<td><%= post[key] %></td>"
-		<% end %>
-	</tr>
-	<% end %>
+    <tr>
+    <% @posts.first.keys.each do |key| %>
+        <th><%= key %></th>
+    <% end %>
+    </tr>
+    <% @posts.each do |post| %>
+    <tr>
+        <% post.keys.each do |key| %>
+        <td><%= post[key] %></td>"
+        <% end %>
+    </tr>
+    <% end %>
 </table>

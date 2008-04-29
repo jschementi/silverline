@@ -1,10 +1,10 @@
 require 'lib/silverlight'
 require 'lib/json_parser'
-require 'controllers/silverlight_controller'
+require 'controllers/application'
 
 # This is the Silverlight router for Rails Controllers. It first hooks
 # any links marked as Silverlight links to the correct actions. When a client
-# action is triggered, it figures out which Controller and Aciton to render
+# action is triggered, it figures out which Controller and Action to render
 # 
 # To hook Silverlight links, it takes one special initParam ":client_links", 
 # which is a list of unique identifiers and url_for-action-syntax for all 
@@ -38,12 +38,6 @@ class App < SilverlightApplication
     c = controller.new
     c.host = self
     c.send(options[:url][:action])
-  end
-end
-
-class DateTime
-  def to_s
-    to_string
   end
 end
 
