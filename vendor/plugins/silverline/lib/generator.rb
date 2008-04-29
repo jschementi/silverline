@@ -25,7 +25,7 @@ class Generator
   def watch
     @watcher = FileSystemWatcher.new
     @watcher.addDirectory "#{RAILS_ROOT}/app/client"
-    @watcher.addDirectory "#{RAILS_ROOT}/vendor/plugins/silverlight/client"
+    @watcher.addDirectory "#{RAILS_ROOT}/vendor/plugins/silverline/client"
     
     # TODO: watch all client controllers, as well as all views
     @watcher.addFile "#{RAILS_ROOT}/app/controllers/client_controller.rb"
@@ -41,7 +41,7 @@ class Generator
     end
     puts "** Generating client.xap"
     # First copy the plugin's client folder
-    FileUtils.cp_r 'vendor/plugins/silverlight/client/.', 'app/.client'
+    FileUtils.cp_r 'vendor/plugins/silverline/client/.', 'app/.client'
     
     # TODO: copy all controllers, views, and models
     FileUtils.mkdir_p 'app/.client/controllers'
