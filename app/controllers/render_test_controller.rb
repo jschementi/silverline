@@ -1,0 +1,3 @@
+class RenderTestController < ApplicationController
+
+end

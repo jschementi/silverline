@@ -29,6 +29,7 @@ class Generator
     
     # TODO: watch all client controllers, as well as all views
     @watcher.addFile "#{RAILS_ROOT}/app/controllers/client_controller.rb"
+    @watcher.addDirectory "#{RAILS_ROOT}/app/views"
     
     @watcher.sleepTime = 1
     @watcher.start { |status, file| generate }
@@ -39,12 +40,17 @@ class Generator
       File.delete(file) if File.exists?(file)
     end
     puts "** Generating client.xap"
+    # First copy the plugin's client folder
     FileUtils.cp_r 'vendor/plugins/silverlight/client/.', 'app/.client'
-    FileUtils.cp_r 'app/client/.', 'app/.client'
     
     # TODO: copy all controllers, views, and models
     FileUtils.mkdir_p 'app/.client/controllers'
+    FileUtils.mkdir_p 'app/.client/views'
     FileUtils.cp 'app/controllers/client_controller.rb', 'app/.client/controllers'
+    FileUtils.cp_r 'app/views/.', 'app/.client/views'
+    
+    # Lastly, app/client wins
+    FileUtils.cp_r 'app/client/.', 'app/.client'
     
     Xap.new.generate
     FileUtils.rm_r 'app/.client'
