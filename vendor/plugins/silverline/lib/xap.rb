@@ -6,7 +6,7 @@
 class XAPChiron
   def generate
     cmd = "public/ironruby/Chiron.exe /s /d:app/.client /z:public/client.xap"
-    # XXX: Should I do some platform detection rather than trial&error?
+    # TODO: Should I do some platform detection rather than trial&error?
     system "#{cmd}" unless system "mono #{cmd}"
   end
 end

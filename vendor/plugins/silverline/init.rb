@@ -1,6 +1,4 @@
 require 'generator'
+Generator.new.watch
+
 require 'silverline'
-ActionView::Base.class_eval do 
-  include ActionView::Helpers::SilverlightHelper
-  alias_method_chain :render, :silverlight
-end

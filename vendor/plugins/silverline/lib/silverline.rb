@@ -30,7 +30,6 @@ class ActionController::Base
 
   # Need to make sure @@client_actions is cleared after each request
   # since this class never gets reconstructed
-  #after_filter :clear_client_actions_list
   after_filter :clear_client_actions
   def clear_client_actions
     @@client_actions = []
@@ -91,8 +90,9 @@ class ActionController::Base
 
 end
 
-module ActionView::Helpers::SilverlightHelper
-  
+class ActionView::Base
+
+  alias_method_chain :render, :silverlight
   def render_with_silverlight(options=nil, &block)
     if options[:partial]
       file = "#{RAILS_ROOT}/app/views/#{self.controller.controller_path}/_#{options[:partial]}.wpf.rb"
@@ -144,13 +144,13 @@ end
 
 module ActionView::Helpers::PrototypeHelper
     
-  alias :old_link_to_remote :link_to_remote
-  def link_to_remote(name, options = {}, html_options = nil)
+  alias_method_chain :link_to_remote, :client
+  def link_to_remote_with_client(name, options = {}, html_options = nil)
     klass, action = class_and_action_from options
     if !klass.client_actions.nil? and klass.client_actions.include? action.to_sym
       link_to_client name, options, html_options
     else
-      old_link_to_remote name, options, html_options
+      link_to_remote_without_client name, options, html_options
     end
   end
   

@@ -18,7 +18,7 @@ class SourceAnnotationExtractor
     @tag = tag
   end
 
-  def find(dirs=%w(app lib test))
+  def find(dirs=%w(app lib test vendor/plugins/silverline))
     dirs.inject({}) { |h, dir| h.update(find_in(dir)) }
   end
 

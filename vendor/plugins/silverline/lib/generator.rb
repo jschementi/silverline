@@ -56,5 +56,3 @@ class Generator
     FileUtils.rm_r 'app/.client'
   end
 end
-
-Generator.new.watch
