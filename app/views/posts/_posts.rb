@@ -1,5 +1,4 @@
-require 'lib/silverlight'
-require 'lib/json_parser'
+require 'silverlight'
 
 class Posts < SilverlightApplication
   def initialize

@@ -57,12 +57,26 @@ class ActionController::Base
     defaults = {
       :start => "app",
       :debug => true,
-      :reportErrors => "errorLocation"
+      :reportErrors => "errorLocation",
+      :properties => {
+        :width => 1,
+        :height => 1,
+        :background => "#ffffffff",
+        :windowless => true
+      }
     }
     options = defaults.merge(options)
     options[:start] << ".rb"
     # TODO: ERb-ify this!
-    %Q(
+    retval = ""
+    if options[:properties][:width].to_i < 2 || options[:properties][:height].to_i < 2
+       retval << "<style type='text/css'>
+         #SilverlightControlHost {
+           position: absolute;
+         }
+        </style>"
+    end
+    retval << %Q(
     <!--
       Syntax/Runtime errors from Silverlight will be displayed here.
       This will contain debugging information and should be removed
@@ -71,18 +85,18 @@ class ActionController::Base
 
     <div id='#{options[:reportErrors]}' style="font-size: small;color: Gray;"></div>
 
-    <div id="debug_print"> </div> 
+    <div id="debug_print"></div> 
 
     <!-- 
       Silverlight control: allows us to write Ruby in the browser
     -->
     <div id="SilverlightControlHost" onload="self.focus()">
-      <object data="data:application/x-silverlight," type="application/x-silverlight-2-b1" width="1" height="1">
+      <object data="data:application/x-silverlight," type="application/x-silverlight-2-b1" width="#{options[:properties][:width]}" height="#{options[:properties][:height]}">
         <param name="source" value="#{public_xap_file}" />
         <param name="onerror" value="onSilverlightError" />
-        <param name="background" value="#ffffffff" />
+        <param name="background" value="#{options[:properties][:background]}" />
         <param name="initParams" value="#{generate_init_params(options)}, http_host=#{http_host}, client_links=#{jsonify_client_links}" />
-        <param name="windowless" value="true" />
+        <param name="windowless" value="#{options[:properties][:windowless]}" />
 
         <a href="http://go.microsoft.com/fwlink/?LinkID=108182" style="text-decoration: none;">
           <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>
@@ -102,6 +116,7 @@ class ActionController::Base
     def generate_init_params(options)
       value = ""
       options.each do |k,v|
+        logger.info "#{k}, #{v}"
         value << "#{k.to_s}=#{v.to_s}, "
       end
       value[0..-3]
@@ -112,7 +127,11 @@ class ActionController::Base
     end
 
     def jsonify_client_links
-      client_links.to_json.gsub("\"", "'").gsub(",","==>") if self.respond_to?("client_links")
+      jsonify(client_links) if self.respond_to?("client_links")
+    end
+    
+    def jsonify(o)
+      o.to_json.gsub("\"", "'").gsub(",", "==>")
     end
 
 end
@@ -121,16 +140,43 @@ class ActionView::Base
   
   def render_with_silverlight(options=nil, &block)
     if options[:partial]
+      
       cpath = self.controller.controller_path
-      wpf_ext = Silverline::FileExtensions::WPF
-      file = "#{Silverline::RAILS_VIEWS}/#{cpath}/_#{options[:partial]}.#{wpf_ext}"
-      if File.exists? file
-        return silverlight_object options.merge({
-          :start => "views/#{cpath}/_#{options[:partial]}.#{wpf_ext.split(".rb").first}"
-        })
+      rb_ext, xaml_ext = Silverline::FileExtensions::RB, Silverline::FileExtensions::XAML
+      path = "#{Silverline::RAILS_VIEWS}/#{cpath}/"
+      filename = "_#{options[:partial]}"
+      
+      options.delete(:partial)
+      
+      unless File.exists? "#{path}#{filename}"
+        
+        if File.exists? "#{path}#{filename}.#{rb_ext}"
+          
+          return silverlight_object options.merge({
+            :start => "views/#{cpath}/#{filename}"
+          })
+          
+        elsif File.exists? "#{path}#{filename}.#{xaml_ext}"
+          
+          return silverlight_object options.merge({
+            :start => "render_xaml",
+            :xaml_to_render => "views/#{cpath}/#{filename}"
+          })
+          
+        else
+        
+          return render_without_silverlight(options, &block)
+        
+        end
+        
+      else
+        
+        # TODO: Make all this work if the file is found!
+        raise "Eek! Specifying the full filename is not supported!"
+        
       end
+      
     end
-    render_without_silverlight(options, &block)
   end
   alias_method_chain :render, :silverlight
   
@@ -139,11 +185,6 @@ class ActionView::Base
     # TODO: ERb-ify this!
     %Q(
       #{stylesheet_link_tag 'error'}
-      <style type="text/css">
-        #SilverlightControlHost {
-          position: absolute;
-        }
-      </style>
 
       <!-- 
         Error handling for when DLR errors are disabled (with 

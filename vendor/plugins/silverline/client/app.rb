@@ -1,4 +1,4 @@
-require 'lib/silverlight'
+require 'silverlight'
 require 'lib/json_parser'
 require 'controllers/application'
 
@@ -22,9 +22,9 @@ class App < SilverlightApplication
       document.get_elements_by_tag_name("a").select { 
         |a| titles.include?(a[:title]) && a[:rel] == "silverlight".to_clr_string
       }.each do |a|
-        link = client_links.select{ |l| l[:title] == a[:title] }.first
+        link = client_links.select{ |l| l['title'] == a[:title] }.first
         unless link.nil?
-          a.onclick { |s, e| do_action(link[:options]) }
+          a.onclick { |s, e| do_action(link['options']) }
           a.remove_attribute("title")
         end
       end
@@ -37,7 +37,7 @@ class App < SilverlightApplication
     controller = ClientController 
     c = controller.new
     c.host = self
-    c.send(options[:url][:action])
+    c.send(options['url']['action'])
   end
 end
 

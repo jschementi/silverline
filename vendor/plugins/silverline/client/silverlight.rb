@@ -6,37 +6,49 @@ include System::Windows::Controls
 $DEBUG = false
 
 require 'lib/extensions'
+require 'lib/json_parser'
 #require 'lib/erb'
+
+def dejsonify(o)
+  JSONParser.new.parse(o.replace("==>", ",").replace("'", "\""))
+end
+
+$params = {}
+Application.current.init_params.collect do |pair|
+  $params[pair.key.to_s.to_sym] = pair.value
+end
 
 class SilverlightApplication
   attr_reader :params
   
   def initialize
     $app = self
-    @params = {}
-    Application.current.init_params.collect do |pair|
-      @params[pair.key.to_s.to_sym] = pair.value
-    end
+    @params = $params
   end
   
-  def document
+  def self.document
     HtmlPage.document
+  end
+  def document
+    self.class.document
   end
  
   def application
     Application.current
   end
-    
+  
   def self.use_xaml(options = {})
     options = {:type => UserControl, :name => "app"}.merge(options)
-    Application.current.load_root_visual(options[:type].new, "#{options[:name]}.xaml")
+    type = options[:type].new
+    Application.load_component(type, Uri.new("#{options[:name]}.xaml", UriKind.Relative))
+    Application.current.root_visual = type
   end
 
   def root
     application.root_visual
   end
-
-  def puts(msg)
+  
+  def self.puts(msg)
     if document.debug_print.nil?
       div = document.create_element('div')
       div[:id] = "debug_print"
@@ -44,9 +56,15 @@ class SilverlightApplication
     end
     document.debug_print[:innerHTML] = "#{document.debug_print.innerHTML}<hr />#{msg}"
   end
+  def puts(msg)
+    self.class.puts(msg)
+  end
 
-  def debug_puts(msg)
+  def self.debug_puts(msg)
     puts(msg) if $DEBUG
+  end
+  def debug_puts(msg)
+    self.class.debug_puts(msg)
   end
 
   def method_missing(m)

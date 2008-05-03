@@ -4,44 +4,34 @@ require "filesystemwatcher"
 require 'xap'
 
 # Generates the XAP on modification of watched files
-class Generator
+module Generator
   include Silverline
   
   Xap = XAPChiron
   
-  def initialize
-    @files = []
-    class << @files
-      alias :"old_carot" :"<<"
-      def << (val)
-        puts val
-        old_carot val
-      end
-    end    
-    puts "** Initializing Silverlight"
-    generate # make sure to generate XAPs the first time 
-  end
-  
   # List of files/directories to watch for modification.
   # Triggers generation of the Silverlight package (XAP)
-  def watch
-    @watcher = FileSystemWatcher.new
-    @watcher.addDirectory Silverline::CLIENT_ROOT
-    @watcher.addDirectory Silverline::PLUGIN_CLIENT
+  def self.register
+    puts "** Initializing Silverlight"
+    watcher = FileSystemWatcher.new
+    watcher.addDirectory Silverline::CLIENT_ROOT
+    watcher.addDirectory Silverline::PLUGIN_CLIENT
     
     # TODO: watch all client controllers, as well as all views
-    @watcher.addFile "#{RAILS_ROOT}/app/controllers/client_controller.rb"
-    @watcher.addDirectory RAILS_VIEWS
+    watcher.addFile "#{RAILS_ROOT}/app/controllers/client_controller.rb"
+    watcher.addDirectory RAILS_VIEWS
     
-    @watcher.sleepTime = 1
-    @watcher.start { |status, file| generate }
+    watcher.sleepTime = 1
+    watcher.start { |status, file| generate }
+    generate # make sure to generate XAPs the first time
   end
   
-  def generate
+  def self.generate
+    puts "** Generating client.xap"
     %W(#{XAP_FILE}).each do |file|
       File.delete(file) if File.exists?(file)
     end
-    puts "** Generating client.xap"
+    
     # First copy the plugin's client folder to tmp folder
     FileUtils.cp_r "#{Silverline::PLUGIN_CLIENT}/.", TMP_CLIENT
     

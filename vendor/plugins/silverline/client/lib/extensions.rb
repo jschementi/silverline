@@ -24,12 +24,6 @@ class Object
   end
 end
 
-class Hash
-  def [](index)
-    fetch(index) { |i| fetch(i.kind_of?(String) ? i.to_sym : i.to_s) }
-  end
-end
-
 class DateTime
   def to_s
     to_string

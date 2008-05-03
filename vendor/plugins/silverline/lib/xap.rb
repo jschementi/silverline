@@ -8,6 +8,7 @@ class XAP
   def initialize(file, directory)
     @file = file
     @directory = directory
+    @files = []
   end
   
   def generate

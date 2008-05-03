@@ -7,7 +7,8 @@ module Silverline
   PLUGIN_CLIENT = "#{PLUGIN_ROOT}/client"
   module FileExtensions
     WPF = "wpf.rb"
-    XAML = "erb.xaml"
+    XAML_ERB = "xaml.erb"
+    XAML = "xaml"
     RB = "rb"
   end
 end
