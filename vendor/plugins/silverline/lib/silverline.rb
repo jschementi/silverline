@@ -1,3 +1,8 @@
+require 'extensions'
+
+require 'controller/base'
+require 'view/base'
+
 module Silverline
   RAILS_VIEWS = "#{RAILS_ROOT}/app/views/"
   XAP_FILE = "#{RAILS_ROOT}/public/client.xap"

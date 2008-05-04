@@ -1,4 +1,3 @@
-# Install hook code here
 require 'ftools'
 require 'silverline'
 

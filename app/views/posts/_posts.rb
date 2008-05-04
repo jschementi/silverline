@@ -6,13 +6,13 @@ class Posts < SilverlightApplication
     request = Net::WebClient.new
     request.download_string_completed do |s,a|
       @posts = JSONParser.new.parse(a.result)
-      _render @posts
+      _render "posts", @posts
       #render :id => "posts", :view => "posts/index"
     end
     request.download_string_async Uri.new("http://#{params[:http_host]}/posts.json")
   end
 
-  def _render(posts)
+  def _render(id, posts)
     output = "<table>"
     output += "  <tr>"
     posts.first.keys.each do |key|
@@ -27,7 +27,7 @@ class Posts < SilverlightApplication
       output += "  </tr>"
     end
     output += "</table>"
-    document.posts[:innerHTML] = output
+    document.send(id)[:innerHTML] = output
   end
 end
 

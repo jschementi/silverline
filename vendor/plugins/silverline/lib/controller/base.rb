@@ -4,8 +4,6 @@ class ActionController::Base
   
   # list of all client actions in this controller
   cattr_reader :client_actions
-
-  helper_method :silverlight_object
   
   # list of all the client links rendered during the current request
   attr_accessor :client_links
@@ -32,6 +30,12 @@ class ActionController::Base
     @@client_actions = []
   end
   
+  def render_with_silverlight(options={}, &block)
+    render_without_silverlight(options, &block)
+  end
+  alias_method_chain :render, :silverlight
+  
+  helper_method :silverlight_object
   def silverlight_object(options = {})
     defaults = {
       :start => "app",
@@ -87,18 +91,28 @@ class ActionController::Base
   end
 
   private 
-  
+    
+    helper_method :render_ruby_partial
+    def render_ruby_partial(filename, options)
+      return silverlight_object options.merge({
+        :start => "views/#{self.controller_path}/#{filename}"
+      })
+    end
+    
+    helper_method :render_xaml_partial
+    def render_xaml_partial(filename, options)
+      return silverlight_object options.merge({
+        :start => "render_xaml",
+        :xaml_to_render => "views/#{self.controller_path}/#{filename}"
+      })
+    end
+      
     def http_host
       session.cgi.instance_variable_get(:"@request").params["HTTP_HOST"]
     end
 
     def generate_init_params(options)
-      value = ""
-      options.each do |k,v|
-        logger.info "#{k}, #{v}"
-        value << "#{k.to_s}=#{v.to_s}, "
-      end
-      value[0..-3]
+      options.collect { |k,v| value << "#{k.to_s}=#{v.to_s}" }.join(", ")
     end
 
     def public_xap_file

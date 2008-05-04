@@ -3,33 +3,28 @@ require 'view/helpers/prototype_helper'
 
 class ActionView::Base
   
-  def render_with_silverlight(options=nil, &block)
-    if options[:partial]
-      cpath = self.controller.controller_path
-      rb_ext, xaml_ext = Silverline::FileExtensions::RB, Silverline::FileExtensions::XAML
-      path = "#{Silverline::RAILS_VIEWS}/#{cpath}/"
-      filename = "_#{options[:partial]}"
+  def render_with_silverlight(options={}, &block)
+    filename = options[:action]
+    filename = "_#{options[:partial]}" if options[:partial]
+    rb_ext, xaml_ext = Silverline::FileExtensions::RB, Silverline::FileExtensions::XAML
+    path = "#{Silverline::RAILS_VIEWS}/#{self.controller.controller_path}/"
+  
+    options.delete(:action)
+    options.delete(:partial)
+    
+    # TODO: Make all this work if the full filename is supplied
+    
+    # Ruby Partial
+    if File.exists? "#{path}#{filename}.#{rb_ext}"
+      return render_ruby_partial(filename, options)
       
-      options.delete(:partial)
-      
-      # TODO: clean this up!
-      unless File.exists? "#{path}#{filename}"
-        if File.exists? "#{path}#{filename}.#{rb_ext}"
-          return silverlight_object options.merge({
-            :start => "views/#{cpath}/#{filename}"
-          })
-        elsif File.exists? "#{path}#{filename}.#{xaml_ext}"
-          return silverlight_object options.merge({
-            :start => "render_xaml",
-            :xaml_to_render => "views/#{cpath}/#{filename}"
-          })
-        else
-          return render_without_silverlight(options, &block)
-        end
-      else
-        # TODO: Make all this work if the file is found!
-        raise "Eek! Specifying the full filename is not supported!"
-      end
+    # XAML Partial
+    elsif File.exists? "#{path}#{filename}.#{xaml_ext}"
+      return render_xaml_partial(filename, options)
+    
+    # Fallback to normal Rails rendering
+    else
+      return render_without_silverlight(options, &block)
     end
   end
   alias_method_chain :render, :silverlight
