@@ -3,16 +3,13 @@ require 'silverlight'
 class Posts < SilverlightApplication
   def initialize
     super
-    request = Net::WebClient.new
-    request.download_string_completed do |s,a|
-      @posts = JSONParser.new.parse(a.result)
-      _render "posts", @posts
-      #render :id => "posts", :view => "posts/index"
-    end
-    request.download_string_async Uri.new("http://#{params[:http_host]}/posts.json")
+    result = download "/posts.json"
+    @posts = JSONParser.new.parse(result)
+    render_posts :id => "posts"
   end
-
-  def _render(id, posts)
+  
+  def render_posts(options = {})
+    id, posts = options[:id], @posts
     output = "<table>"
     output += "  <tr>"
     posts.first.keys.each do |key|
