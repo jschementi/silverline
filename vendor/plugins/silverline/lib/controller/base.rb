@@ -112,7 +112,7 @@ class ActionController::Base
     end
 
     def generate_init_params(options)
-      options.collect { |k,v| value << "#{k.to_s}=#{v.to_s}" }.join(", ")
+      options.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join(", ")
     end
 
     def public_xap_file
