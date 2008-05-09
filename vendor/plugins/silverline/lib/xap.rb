@@ -38,8 +38,8 @@ class XAP
       # (Microsoft.Scripting.Silverlight in this case)
       @assemblies = %w(Microsoft.Scripting.Silverlight Microsoft.Scripting IronRuby IronRuby.Libraries)
       @entry_point_type = "Microsoft.Scripting.Silverlight.DynamicSilverlight"
-      file = File.open("AppManifest.erb.xaml", 'r')
-      xaml = ERB.new file.read
+      file = File.open("#{PLUGIN_ROOT}/templates/AppManifest.xaml.erb", 'r'){|f| f.read }
+      xaml = ERB.new(file).
       xaml.run(binding)
     end
 

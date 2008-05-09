@@ -1,4 +1,4 @@
-require 'extensions'
+require 'ruby_patch'
 
 require 'controller/base'
 require 'view/base'

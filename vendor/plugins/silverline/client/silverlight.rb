@@ -7,6 +7,7 @@ $DEBUG = false
 
 require 'lib/extensions'
 require 'lib/json_parser'
+require 'lib/downloader'
 #require 'lib/erb'
 
 def dejsonify(o)
@@ -19,6 +20,8 @@ Application.current.init_params.collect do |pair|
 end
 
 class SilverlightApplication
+  include Downloader
+  
   attr_reader :params
   
   def initialize

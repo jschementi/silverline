@@ -1,0 +1,27 @@
+<!--
+  Syntax/Runtime errors from Silverlight will be displayed here.
+  This will contain debugging information and should be removed
+  or hidden when debugging is completed
+-->
+
+<div id='<%= options[:reportErrors] %>' style="font-size: small;color: Gray;"></div>
+
+<div id="debug_print"></div> 
+
+<!-- 
+  Silverlight control: allows us to write Ruby in the browser
+-->
+<div id="SilverlightControlHost" onload="self.focus()">
+  <object data="data:application/x-silverlight," type="application/x-silverlight-2-b1" width="<%= options[:properties][:width] %>" height="<%= options[:properties][:height] %>">
+    <param name="source" value="<%= public_xap_file %>" />
+    <param name="onerror" value="onSilverlightError" />
+    <param name="background" value="<%= options[:properties][:background] %>" />
+    <param name="initParams" value="<%= generate_init_params(options) %>, http_host=<%= http_host %>, client_links=<%= jsonify_client_links %>" />
+    <param name="windowless" value="<%= options[:properties][:windowless] %>" />
+
+    <a href="http://go.microsoft.com/fwlink/?LinkID=108182" style="text-decoration: none;">
+      <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>
+    </a>
+  </object>
+  <iframe style='visibility:hidden;height:0;width:0;border:0px'></iframe>
+</div>
