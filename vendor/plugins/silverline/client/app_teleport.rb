@@ -1,5 +1,4 @@
 require 'silverlight'
-require 'lib/json_parser'
 require 'controllers/application'
 
 # This is the Silverlight router for Rails Controllers. It first hooks
@@ -10,35 +9,40 @@ require 'controllers/application'
 # which is a list of unique identifiers and url_for-action-syntax for all 
 # the client links on the page. It then grabs those links and hooks them
 # with the appropriate action.
-class App < SilverlightApplication
+class Teleport < SilverlightApplication
   def initialize
     super
     unless params[:client_links].to_s == "null"
-      client_links = JSONParser.new.parse(
-        params[:client_links].replace("==>", ",").replace("'", "\""))
-        
-      titles = client_links.collect { |l| l['title'] }
-      
-      document.get_elements_by_tag_name("a").select { 
-        |a| titles.include?(a[:title]) && a[:rel] == "silverlight".to_clr_string
-      }.each do |a|
-        link = client_links.select{ |l| l['title'] == a[:title] }.first
-        unless link.nil?
-          a.onclick { |s, e| do_action(link['options']) }
-          a.remove_attribute("title")
-        end
-      end
+      @client_links = dejsonify(params[:client_links])
+      find_client_links.each { |a| hook_client_link(a) }
     end
   end
   
-  def do_action(options)
-    #TODO: don't hardcode controller!
-    require 'controllers/client_controller'
-    controller = ClientController 
-    c = controller.new
-    c.host = self
-    c.send(options['url']['action'])
-  end
+  private
+  
+    def find_client_links
+      titles = @client_links.collect { |l| l['title'] }
+      document.get_elements_by_tag_name("a").select { 
+        |a| titles.include?(a[:title]) && a[:rel] == "silverlight".to_clr_string
+      }
+    end
+  
+    def hook_client_link(a)
+      link = @client_links.select{ |l| l['title'] == a[:title] }.first
+      unless link.nil?
+        a.onclick { |s, e| do_action(link['options']) }
+        a.remove_attribute("title")
+      end
+    end
+  
+    def do_action(options)
+      #TODO: don't hardcode controller!
+      require 'controllers/client_controller'
+      controller = ClientController
+      c = controller.new
+      c.host = self
+      c.send(options['url']['action'])
+    end
 end
 
-$app = App.new
+Teleport.new

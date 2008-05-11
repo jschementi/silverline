@@ -17,4 +17,8 @@ module Silverline::Visualize::Helpers::Types
     render_without_silverlight(option, &block)
   end
   
+  def _ag_render_for_nilclass(options, &block)
+    render_without_silverlight(options, &block)
+  end
+  
 end

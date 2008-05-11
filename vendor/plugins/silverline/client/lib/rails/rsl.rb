@@ -2,6 +2,7 @@
 # Same functions/behavior as the Prototype Helper of Rails, so any rjs calls
 # can be run on the client.
 class RSL
+  
   def initialize(document)
     @document = document
   end
@@ -12,4 +13,5 @@ class RSL
       e[:innerHTML] = "#{e[:innerHTML]} #{string}"
     end
   end
+  
 end

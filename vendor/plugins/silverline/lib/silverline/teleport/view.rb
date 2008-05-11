@@ -17,27 +17,18 @@ module Silverline::Teleport::View
       title = Digest::SHA1.hexdigest(url_for(options))
       self.controller.client_links ||= []
       self.controller.client_links << {:title => title, :options => options}
-      %Q(<a href="#" rel="silverlight" title="#{title}">#{name}</a>)
+      %Q(<a href="javascript:void(0)" rel="silverlight" title="#{title}">#{name}</a>)
     end
   
 
     def link_to_remote_with_client(name, options = {}, html_options = nil)
-      klass, action = class_and_action_from options
-      if !klass.client_actions.nil? and klass.client_actions.include? action.to_sym
+      if is_client_action?(options)
         link_to_client name, options, html_options
       else
         link_to_remote_without_client name, options, html_options
       end
     end
-
-    private
-
-      def class_and_action_from(options)
-        [
-          options[:url].has_key?(:controller) ? "#{options[:url][:controller].capitalize}Controller".constantize : self.controller.class,
-          options[:url].has_key?(:action) ? options[:url][:action] : self.controller.action_name
-        ]
-      end
+    
   end
   
 end

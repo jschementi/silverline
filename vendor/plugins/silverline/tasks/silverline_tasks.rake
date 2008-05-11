@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :silverlight do
+# task :silverline do
 #   # Task goes here
 # end

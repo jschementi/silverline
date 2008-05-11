@@ -9,7 +9,7 @@ module Silverline::Visualize::Helpers::Formats
   
   def ___ag_render_xaml_partial(filename, options)
     return silverlight_object options.merge({
-      :start => "render_xaml",
+      :start => "app_render_xaml",
       :xaml_to_render => "views/#{@__cpath}/#{filename}"
     })
   end

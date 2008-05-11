@@ -1,4 +1,4 @@
-require 'lib/rsl'
+require 'lib/rails'
 
 # Controller base-class which allows children to run their actions on the client. 
 #

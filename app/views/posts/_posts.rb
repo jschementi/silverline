@@ -4,7 +4,7 @@ class Posts < SilverlightApplication
   def initialize
     super
     result = download "/posts.json"
-    @posts = result.empty? ? [] : JSONParser.new.parse(result)
+    @posts = result.empty? ? [] : JSON.new.parse(result)
     render_posts :id => "posts"
   end
   

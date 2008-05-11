@@ -1,6 +1,6 @@
 require 'ftools'
 
-module Silverline::Visualize::Controller
+module Silverline::Visualize::Rendering
   
   def self.included(base)
     base.class_eval do
@@ -8,7 +8,7 @@ module Silverline::Visualize::Controller
     end
   end
   
-  def render_with_silverlight(options={}, &block)
+  def render_with_silverlight(options=nil, &block)
     send("_ag_render_for_#{options.class.to_s.downcase}", options, &block)
   end
   
