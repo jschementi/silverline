@@ -1,21 +1,20 @@
 # NOTE: requires filesystemwatcher to be installed
 # http://www.jhorman.org/FileSystemWatcher/index.html
 require "filesystemwatcher"
-require 'xap'
+require 'silverline/essential/xap'
 
 # Generates the XAP on modification of watched files
-module Generator
+module Silverline::Essential::Generator
   include Silverline
-  
-  Xap = XAPChiron
+  Xap = Silverline::Essential::XAPChiron
   
   # List of files/directories to watch for modification.
   # Triggers generation of the Silverlight package (XAP)
   def self.register
     puts "** Initializing Silverlight"
     watcher = FileSystemWatcher.new
-    watcher.addDirectory Silverline::CLIENT_ROOT
-    watcher.addDirectory Silverline::PLUGIN_CLIENT
+    watcher.addDirectory CLIENT_ROOT
+    watcher.addDirectory PLUGIN_CLIENT
     
     # TODO: watch all client controllers, as well as all views
     watcher.addFile "#{RAILS_ROOT}/app/controllers/client_controller.rb"

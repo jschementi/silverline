@@ -16,9 +16,9 @@
     <param name="source" value="<%= public_xap_file %>" />
     <param name="onerror" value="onSilverlightError" />
     <param name="background" value="<%= options[:properties][:background] %>" />
-    <param name="initParams" value="<%= generate_init_params(options) %>, http_host=<%= http_host %>, client_links=<%= jsonify_client_links %>" />
     <param name="windowless" value="<%= options[:properties][:windowless] %>" />
-
+    <param name="initParams" value="<%= generate_init_params(options) %> />
+    
     <a href="http://go.microsoft.com/fwlink/?LinkID=108182" style="text-decoration: none;">
       <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>
     </a>

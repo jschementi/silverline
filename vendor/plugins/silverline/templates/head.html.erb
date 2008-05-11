@@ -1,5 +1,15 @@
-<style type='text/css'>
-#SilverlightControlHost {
-	position: absolute;
-}
-</style>
+<%= stylesheet_link_tag 'error' %>
+
+<!-- 
+  Error handling for when DLR errors are disabled (with 
+  reportErrors=false, or not defined at all)
+-->
+<script type="text/javascript">
+  function onSilverlightError(sender, args) {
+    if (args.errorType == "InitializeError")  {
+      var errorDiv = document.getElementById("errorLocation");
+      if (errorDiv != null)
+        errorDiv.innerHTML = args.errorType + "- " + args.errorMessage;
+    }
+  }
+</script>

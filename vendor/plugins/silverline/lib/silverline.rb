@@ -1,7 +1,4 @@
-require 'ruby_patch'
-
-require 'controller/base'
-require 'view/base'
+require 'patch/ruby'
 
 module Silverline
   RAILS_VIEWS = "#{RAILS_ROOT}/app/views/"
@@ -17,3 +14,7 @@ module Silverline
     RB = "rb"
   end
 end
+
+require 'silverline/essential'
+require 'silverline/visualize'
+require 'silverline/teleport'
