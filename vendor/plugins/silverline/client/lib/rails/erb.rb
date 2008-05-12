@@ -247,6 +247,7 @@ end
 #--
 # ERB::Compiler
 class ERB
+  
   class Compiler # :nodoc:
     class PercentLine # :nodoc:
       def initialize(str)
@@ -255,7 +256,7 @@ class ERB
       attr_reader :value
       alias :to_s :value
     end
-
+    
     class Scanner # :nodoc:
       SplitRegexp = /(<%%)|(%%>)|(<%=)|(<%#)|(<%)|(%>)|(\n)/
 
@@ -281,7 +282,7 @@ class ERB
 
       def scan; end
     end
-
+    
     class TrimScanner < Scanner # :nodoc:
       TrimSplitRegexp = /(<%%)|(%%>)|(<%=)|(<%#)|(<%)|(%>\n)|(%>)|(\n)/
 
@@ -387,7 +388,7 @@ class ERB
         ERB_STAG.member?(s)
       end
     end
-
+    
     Scanner.default_scanner = TrimScanner
 
     class SimpleScanner < Scanner # :nodoc:
@@ -400,7 +401,7 @@ class ERB
         end
       end
     end
-
+    
     Scanner.regist_scanner(SimpleScanner, nil, false)
 
     begin
@@ -422,7 +423,7 @@ class ERB
         end
       end
       Scanner.regist_scanner(SimpleScanner2, nil, false)
-
+      
       class PercentScanner < Scanner # :nodoc:
         def scan
           new_line = true
@@ -450,7 +451,7 @@ class ERB
         end
       end
       Scanner.regist_scanner(PercentScanner, nil, true)
-
+      
       class ExplicitScanner < Scanner # :nodoc:
         def scan
           new_line = true
@@ -486,7 +487,7 @@ class ERB
 
     rescue LoadError
     end
-
+    
     class Buffer # :nodoc:
       def initialize(compiler)
         @compiler = compiler
@@ -613,10 +614,15 @@ class ERB
       @pre_cmd = []
       @post_cmd = []
     end
+    
     attr_reader :percent, :trim_mode
+    
     attr_accessor :put_cmd, :insert_cmd, :pre_cmd, :post_cmd
+    
   end
 end
+
+
 
 #--
 # ERB

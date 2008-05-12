@@ -4,14 +4,20 @@
     <dict>
         <key>fileTriggers</key>
         <dict>
+            <key>_posts.rb</key>
+            <string>app\views\posts\_posts.rb</string>
             <key>app.rb</key>
-            <string>C:\Users\jimmysch\Projects\vsl\Merlin\Users\jimmysch\dynamic_silverlight\photoviewer\ruby\app.rb</string>
+            <string>..\vsl\Merlin\Users\jimmysch\dynamic_silverlight\photoviewer\ruby\app.rb</string>
+            <key>generator.rb</key>
+            <string>vendor\plugins\silverline\lib\silverline\essential\generator.rb</string>
             <key>index.</key>
             <string>app\views\posts\index.html.erb</string>
             <key>index.h</key>
             <string>app\client\views\posts\index.erb.html</string>
             <key>silverli</key>
-            <string>C:\Users\jimmysch\Projects\vsl\Merlin\Users\jimmysch\dynamic_silverlight\photoviewer\ruby\silverlight.rb</string>
+            <string>..\vsl\Merlin\Users\jimmysch\dynamic_silverlight\photoviewer\ruby\silverlight.rb</string>
+            <key>xap.rb</key>
+            <string>vendor\plugins\silverline\lib\silverline\essential\xap.rb</string>
         </dict>
     </dict>
 </plist>

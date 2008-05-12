@@ -1,3 +1,6 @@
+<% if @posts.empty? %>
+  No posts, add one below!
+<% else %>
 <table>
     <tr>
     <% @posts.first.keys.each do |key| %>
@@ -7,8 +10,9 @@
     <% @posts.each do |post| %>
     <tr>
         <% post.keys.each do |key| %>
-        <td><%= post[key] %></td>"
+        <td><%= post[key] %></td>
         <% end %>
     </tr>
     <% end %>
 </table>
+<% end %>

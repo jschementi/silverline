@@ -42,7 +42,6 @@ module Silverline::Essential::Generator
     
     # Lastly, client root wins
     FileUtils.cp_r "#{CLIENT_ROOT}/.", TMP_CLIENT
-    
     Xap.new(XAP_FILE, TMP_CLIENT).generate
     
     FileUtils.rm_r TMP_CLIENT

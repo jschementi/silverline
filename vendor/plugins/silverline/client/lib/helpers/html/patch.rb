@@ -1,8 +1,12 @@
 include System::Windows::Browser
 
 class HtmlDocument
-  def method_missing(m)
-    get_element_by_id(m)
+  def method_missing(m, *args)
+    super
+  rescue => e
+    id = get_element_by_id(m)
+    return id unless id.nil?
+    raise e  
   end
 
   alias_method :orig_get_element_by_id, :get_element_by_id
@@ -13,18 +17,27 @@ end
 
 class HtmlElement
   def [](index)
-    get_attribute(index)
+    val = get_attribute(index)
+    return get_property(index) if val.nil?
+    return val
   end
 
   def []=(index, value)
-    set_attribute(index, value)
+    val = get_attribute(index)
+    val.nil? ? set_property(index, value) : set_attribute(index, value)
   end
 
-  def method_missing(m, &block)
+  def method_missing(m, *args, &block)
+    super
+  rescue => e
     if(block.nil?)
-      self[m]
+      id = self[m] 
+      return id unless id.nil?
+      raise e
     else
-      attach_event(m.to_s.to_clr_string, System::EventHandler.new(&block))
+      unless attach_event(m.to_s.to_clr_string, System::EventHandler.new(&block))
+        raise e
+      end
     end
   end
 
@@ -40,6 +53,16 @@ class HtmlElement
   alias_method :orig_set_attribute, :set_attribute
   def set_attribute(index, value)
     orig_set_attribute(index.to_s.to_clr_string, value)
+  end
+
+  alias_method :orig_get_property, :get_property
+  def get_property(index)
+    orig_get_property(index.to_s.to_clr_string)
+  end
+
+  alias_method :orig_set_property, :set_property
+  def set_property(index, value)
+    orig_set_property(index.to_s.to_clr_string, value)
   end
 
   alias_method :orig_get_style_attribute, :get_style_attribute
@@ -67,6 +90,10 @@ class HtmlStyle
   end
 
   def method_missing(m)
-    self[m]
+    super
+  rescue => e
+    style = self[m]
+    return style unless style.nil?
+    raise e
   end
 end

@@ -15,4 +15,10 @@ module Downloader
     end
   end
   
+  def get(url, options, &block)
+    json = download "/#{url}.json"
+    return JSON.new.parse(json) if options[:format] == 'ruby'
+    return json
+  end
+  
 end

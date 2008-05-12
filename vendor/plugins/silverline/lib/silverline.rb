@@ -1,7 +1,7 @@
 require 'patch/ruby'
 
 module Silverline
-  RAILS_VIEWS = "#{RAILS_ROOT}/app/views/"
+  RAILS_VIEWS = "#{RAILS_ROOT}/app/views"
   XAP_FILE = "#{RAILS_ROOT}/public/client.xap"
   CLIENT_ROOT = "#{RAILS_ROOT}/lib/client"
   TMP_CLIENT = "#{RAILS_ROOT}/tmp/client"

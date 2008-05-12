@@ -21,15 +21,21 @@ class Teleport < SilverlightApplication
   private
   
     def find_client_links
-      titles = @client_links.collect { |l| l['title'] }
-      document.get_elements_by_tag_name("a").select { 
-        |a| titles.include?(a[:title]) && a[:rel] == "silverlight".to_clr_string
+      $app.puts params[:client_links]
+      $app.puts @client_links.inspect
+      titles = @client_links.collect { |l| puts l.keys.inspect; l.fetch("title") }
+      $app.puts titles.inspect
+      document.get_elements_by_tag_name("a").select {
+        |a| titles.include?(a.title) && a.rel == "silverlight".to_clr_string
       }
     end
   
     def hook_client_link(a)
+      $app.puts "hooking stuff"
       link = @client_links.select{ |l| l['title'] == a[:title] }.first
+        $app.puts "hooking stuff"
       unless link.nil?
+        $app.puts "hooking stuff"
         a.onclick { |s, e| do_action(link['options']) }
         a.remove_attribute("title")
       end

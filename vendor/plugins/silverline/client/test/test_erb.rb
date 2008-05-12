@@ -1,4 +1,4 @@
-require 'erb'
+require '../lib/rails/erb'
 
 @x = "ERB works!"
 $template = <<-EOS

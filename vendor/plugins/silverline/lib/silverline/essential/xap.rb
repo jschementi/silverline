@@ -38,10 +38,10 @@ module Silverline::Essential
         @assembly_path = "/public/ironruby"
         # Note: Silverlight entry-point assembly must be the first in this list
         # (Microsoft.Scripting.Silverlight in this case)
-        @assemblies = %w(Microsoft.Scripting.Silverlight Microsoft.Scripting IronRuby IronRuby.Libraries)
+        @assemblies = %w(Microsoft.Scripting.Silverlight Microsoft.Scripting.Core Microsoft.Scripting IronRuby IronRuby.Libraries)
         @entry_point_type = "Microsoft.Scripting.Silverlight.DynamicSilverlight"
         file = File.open("#{PLUGIN_ROOT}/templates/AppManifest.xaml.erb", 'r'){|f| f.read }
-        xaml = ERB.new(file).
+        xaml = ERB.new(file)
         xaml.run(binding)
       end
 
@@ -76,7 +76,7 @@ module Silverline::Essential
   class XAPChiron < XAP
   
     def generate
-      cmd = "public/ironruby/Chiron.exe /s /d:#{@directory} /z:#{@file}"
+      cmd = "public/ironruby/Chiron.exe /d:#{@directory} /z:#{@file}"
       # TODO: Should I do some platform detection rather than trial&error?
       system "#{cmd}" unless system "mono #{cmd}"
     end

@@ -13,7 +13,7 @@ module Silverline::Essential::Html
       :properties => {
         :width => 1,
         :height => 1,
-        :background => "#ffffffff",
+        :background => "#00ffffff",
         :windowless => true
       }
     }

@@ -40,8 +40,12 @@ class FrameworkElement
     self.old_margin = Thickness.new *value
   end
 
-  def method_missing(m)
-    find_name(m.to_s.to_clr_string)
+  def method_missing(m, *args)
+    super
+  rescue => e
+    element = find_name(m.to_s.to_clr_string)
+    return element unless element.nil?
+    raise e
   end
 end
 

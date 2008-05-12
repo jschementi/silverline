@@ -15,22 +15,20 @@ include System::Windows::Media::Animation
 include System::Windows::Media::Imaging
 
 module Wpf
-=begin
+
   def self.included(base)
     base.extend(ClassMethods)
   end
   
   module ClassMethods
-    
     def use_xaml(options = {})
       options = {:type => UserControl, :name => "app"}.merge(options)
       type = options[:type].new
       Application.load_component(type, Uri.new("#{options[:name]}.xaml", UriKind.Relative))
       Application.current.root_visual = type
     end
-    
   end
-=end
+  
   def root
     application.root_visual
   end
