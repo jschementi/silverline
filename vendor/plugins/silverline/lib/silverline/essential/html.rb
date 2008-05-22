@@ -8,7 +8,7 @@ module Silverline::Essential::Html
     require 'erb'
     defaults = {
       :start => "app",
-      :debug => true,
+      :debug => false,
       :reportErrors => "errorLocation",
       :properties => {
         :width => 1,
@@ -17,7 +17,7 @@ module Silverline::Essential::Html
         :windowless => true
       }
     }
-    options = defaults.merge(options)
+    options = defaults.deep_merge(options)
     options[:start] << ".rb"
     retval = ""
     if options[:properties][:width].to_i < 2 || options[:properties][:height].to_i < 2

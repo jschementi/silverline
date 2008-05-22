@@ -76,7 +76,7 @@ module Silverline::Essential
   class XAPChiron < XAP
   
     def generate
-      cmd = "public/ironruby/Chiron.exe /d:#{@directory} /z:#{@file}"
+      cmd = "public/ironruby/Chiron.exe /s /d:#{@directory} /z:#{@file}"
       # TODO: Should I do some platform detection rather than trial&error?
       system "#{cmd}" unless system "mono #{cmd}"
     end

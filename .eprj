@@ -8,6 +8,14 @@
             <string>app\views\posts\_posts.rb</string>
             <key>app.rb</key>
             <string>..\vsl\Merlin\Users\jimmysch\dynamic_silverlight\photoviewer\ruby\app.rb</string>
+            <key>body.</key>
+            <string>vendor\plugins\silverline\templates\body.html.erb</string>
+            <key>dis</key>
+            <string>vendor\rails\actionpack\lib\action_controller\dispatcher.rb</string>
+            <key>dispatch</key>
+            <string>vendor\rails\railties\lib\dispatcher.rb</string>
+            <key>dispatcher</key>
+            <string>vendor\rails\actionpack\lib\action_controller\dispatcher.rb</string>
             <key>generator.rb</key>
             <string>vendor\plugins\silverline\lib\silverline\essential\generator.rb</string>
             <key>index.</key>

@@ -1,5 +1,16 @@
 class JSON
-  AST = Struct.new(:value)
+
+  # TODO: Use Struct when it works properly
+  # AST = Struct.new(:value)
+  class AST
+    def initialize(value)
+      @value = value
+    end
+    def value
+      @value
+    end
+  end
+  # /endTODO
 
   def parse(input)
     @input = StringScanner.new(input)

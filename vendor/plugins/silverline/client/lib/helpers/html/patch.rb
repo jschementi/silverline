@@ -15,6 +15,21 @@ class HtmlDocument
   end
 end
 
+class HtmlElementCollection
+  def [](index)
+    get_Item(index)
+  end
+  def size
+    count
+  end
+  def first
+    self[0] if size > 0
+  end
+  def last
+    self[size - 1] if size > 0
+  end
+end
+
 class HtmlElement
   def [](index)
     val = get_attribute(index)

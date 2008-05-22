@@ -15,6 +15,8 @@ module Silverline::Essential::Generator
     watcher = FileSystemWatcher.new
     watcher.addDirectory CLIENT_ROOT
     watcher.addDirectory PLUGIN_CLIENT
+    watcher.addDirectory "#{PLUGIN_ROOT}/public"
+    watcher.addDirectory "#{RAILS_ROOT}/public/ironruby"
     
     # TODO: watch all client controllers, as well as all views
     watcher.addFile "#{RAILS_ROOT}/app/controllers/client_controller.rb"

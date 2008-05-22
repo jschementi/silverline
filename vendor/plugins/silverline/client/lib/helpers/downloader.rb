@@ -3,7 +3,7 @@ include System::Windows::Browser
 module Downloader
   
   def download(url, &block)
-    if block.nil?
+    unless block_given?
       request = HtmlPage.Window.CreateInstance("XMLHttpRequest".to_clr_string)
       request.Invoke("open".to_clr_string, "GET".to_clr_string, url, false)
       request.Invoke("send".to_clr_string, "".to_clr_string)
@@ -16,7 +16,9 @@ module Downloader
   end
   
   def get(url, options, &block)
-    json = download "/#{url}.json"
+    url = "/#{url}.json"
+    return download url, block if block_given? 
+    json = download url
     return JSON.new.parse(json) if options[:format] == 'ruby'
     return json
   end

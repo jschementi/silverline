@@ -12,7 +12,7 @@
   Silverlight control: allows us to write Ruby in the browser
 -->
 <div id="SilverlightControlHost" onload="self.focus()">
-  <object data="data:application/x-silverlight," type="application/x-silverlight-2" width="<%= options[:properties][:width] %>" height="<%= options[:properties][:height] %>">
+  <object data="data:application/x-silverlight," type="application/x-silverlight-2-b2" width="<%= options[:properties][:width] %>" height="<%= options[:properties][:height] %>">
     <param name="source" value="<%= public_xap_file %>" />
     <param name="onerror" value="onSilverlightError" />
     <param name="background" value="<%= options[:properties][:background] %>" />
@@ -25,3 +25,4 @@
   </object>
   <iframe style='visibility:hidden;height:0;width:0;border:0px'></iframe>
 </div>
+
