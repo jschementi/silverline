@@ -44,7 +44,16 @@ class SilverlightApplication
     split_url = options[:partial].split "/"
     split_url[-1] = "_#{split_url[-1]}"
     partial = split_url.join "/"
-    rhtml = ERB.new XAP.get_file_contents("views/#{partial}.html.erb")
+
+    path = params[:rb_to_run].to_s.split("/")[0..-2].join("/") unless params[:rb_to_run].nil?
+    filename = "#{path}/#{partial}.html.erb"
+    begin
+      XAP.get_file(filename)
+    rescue
+      filename = "views/#{partial}.html.erb"
+    end
+    
+    rhtml = ERB.new XAP.get_file_contents(filename)
     document.send(options[:update])[:innerHTML] = rhtml.result(binding)
   end
 end

@@ -1,16 +1,12 @@
+require 'strscan'
+
 class JSON
 
-  # TODO: Use Struct when it works properly
-  # AST = Struct.new(:value)
-  class AST
-    def initialize(value)
-      @value = value
-    end
-    def value
-      @value
-    end
+  def self.parse(input)
+    JSON.new.parse(input)
   end
-  # /endTODO
+
+  AST = Struct.new(:value)
 
   def parse(input)
     @input = StringScanner.new(input)

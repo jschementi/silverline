@@ -19,7 +19,7 @@ module XAP
       get_file(Uri.new(normalize_path(relative_path_or_uri), UriKind.relative))
     elsif relative_path_or_uri.class == Uri
       sri = Application.get_resource_stream(relative_path_or_uri)
-      raise "#{relative_path_or_uri.to_string.to_s} does not exist" if sri.nil?
+      raise Exception.new("#{relative_path_or_uri.to_string.to_s} does not exist") if sri.nil?
       sri.stream
     end
   end
