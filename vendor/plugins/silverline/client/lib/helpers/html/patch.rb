@@ -46,10 +46,15 @@ class HtmlElement
     super
   rescue => e
     if(block.nil?)
-      id = self[m] 
-      return id unless id.nil?
-      raise e
+      if m.to_s[-1..-1] == "="
+        self[m.to_s[0..-2]] = args.first
+      else
+        id = self[m] 
+        return id unless id.nil?
+        raise e
+      end
     else
+      # TODO: want to do EventHandler.of(HtmlEventArgs) to get proper arguments back
       unless attach_event(m.to_s.to_clr_string, System::EventHandler.new(&block))
         raise e
       end
@@ -104,11 +109,15 @@ class HtmlStyle
     @element.set_style_attribute(index, value)
   end
 
-  def method_missing(m)
+  def method_missing(m, *args)
     super
   rescue => e
-    style = self[m]
-    return style unless style.nil?
-    raise e
+    if m.to_s[-1..-1] == "="
+      self[m.to_s[0..-2]] = args.first
+    else
+      style = self[m]
+      return style unless style.nil?
+      raise e
+    end
   end
 end

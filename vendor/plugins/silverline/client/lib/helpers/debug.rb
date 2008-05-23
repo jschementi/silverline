@@ -6,15 +6,16 @@ module Debug
   
   module ClassMethods
     def puts(msg)
-      if document.debug_print.nil?
+      if document.get_element_by_id('debug_print').nil?
         div = document.create_element('div')
         div[:id] = "debug_print"
         document.get_elements_by_tag_name("body").get_Item(0).append_child(div)
       end
-      document.debug_print[:innerHTML] = "#{document.debug_print.innerHTML}<hr />#{msg}"
+      dp = document.get_element_by_id('debug_print')
+      dp.set_property('innerHTML', "#{dp.get_property('innerHTML')}<hr />#{msg}")
     end
             
-    def debug_puts(msg)
+    def log(msg)
       self.puts(msg) if $DEBUG
     end
   end
@@ -24,8 +25,8 @@ module Debug
       self.class.puts(msg)
     end
   
-    def debug_puts(msg)
-      self.class.debug_puts(msg)
+    def log(msg)
+      self.class.log(msg)
     end
   end
 end
