@@ -1,6 +1,9 @@
 
 # Filling in the holes of IronRuby
 
+# Add the Ruby standard library to the path
+$: << "lib/std"
+
 # Need attr* methods since in SL they throw a MethodAccessException
 # when trying to be used
 class Object
