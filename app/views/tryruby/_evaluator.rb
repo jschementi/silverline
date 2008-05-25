@@ -33,10 +33,11 @@ end
 
 def hook_run
   document.run.onclick do |s, a|
-    document.loading.innerHTML = 'evaluating ...'
+    document.loading.innerHTML = "<img src='/images/loading.gif' alt='evaluating ...' />"
     compute
     move_on
     document.loading.innerHTML = ''
+    HtmlPage.window.eval "moveTo('console', 'code')"
   end
 end
 

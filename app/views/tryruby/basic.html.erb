@@ -64,22 +64,88 @@ h1 {
 }
 </style>
 
+<!-- TODO: remove this when I can hook HTML keyboard events properly -->
+<script type="text/javascript">
+  function submitenter(myField, e) {
+    var keycode;
+    if(window.event) {
+      keycode = window.event.keyCode;
+    } else if(e) {
+      keycode = e.which;
+    } else {
+      return true;
+    }
+
+    if(keycode == 13) {
+      document.getElementById('run').click();
+      return false;
+    } else {
+      return true;
+    }
+  }
+</script>
+
+<!-- Scrolling that uses script.aculo.us (port to SL?) -->
+<script type="text/javascript">
+  Effect.Scroll = Class.create(); 
+  Object.extend(Object.extend(Effect.Scroll.prototype, Effect.Base.prototype), { 
+    initialize: function(element) { 
+      this.element = $(element); 
+      var options = Object.extend({ 
+        x:    0, 
+        y:    0, 
+        mode: 'absolute' 
+      } , arguments[1] || {}  ); 
+      this.start(options); 
+    }, 
+    setup: function() { 
+      if (this.options.continuous && !this.element._ext ) { 
+        this.element.cleanWhitespace(); 
+        this.element._ext=true; 
+        this.element.appendChild(this.element.firstChild); 
+      } 
+       
+      this.originalLeft=this.element.scrollLeft; 
+      this.originalTop=this.element.scrollTop; 
+       
+      if(this.options.mode == 'absolute') { 
+        this.options.x -= this.originalLeft; 
+        this.options.y -= this.originalTop; 
+      } else { 
+       
+      } 
+    }, 
+    update: function(position) {     
+      this.element.scrollLeft = this.options.x * position + this.originalLeft; 
+      this.element.scrollTop  = this.options.y * position + this.originalTop; 
+    } 
+  }); 
+
+  function moveTo(container, element) {
+    Position.prepare();
+    container_y = Position.cumulativeOffset($(container))[1]
+    element_y = Position.cumulativeOffset($(element))[1]
+    new Effect.Scroll(container, {x:0, y:(element_y-container_y)});
+    return false;
+  }
+</script>
+
 <h1>Try IronRuby: basic</h1>
 <div class="warning">
   <b>Very early prototype</b>: Only tested in Firefox, and there is no error handling, so 
-  any error will just hang with "evaluating ..." until you type something that executes 
-  successfully. Also, the up-arrow doesn't cycle through previous commands, though you 
+  any error will just hang with "..." until you type something that executes 
+  successfully. Also, the up-arrow doesn't cycle through previous commands, though sometimes you 
   will get browser auto-complete once you start typing. =)
 </div>
 
 <div id="console">
   <div id="result"></div>
-  <span id="prompt">&raquo;&nbsp;</span><form id="run_form" action="javascript:void(0)"><input type="text" id="code" /><input type="submit" id="run" value="Run" /></form>
+  <span id="prompt">&raquo;&nbsp;</span><form id="run_form" action="javascript:void(0)"><input type="text" id="code" onkeypress="return submitenter(this, event)" /><input type="submit" id="run" value="Run" /></form>
   <span id="loading"></span>
 </div>
 <div id="tutorial">
   <h2>Tutorial</h2>
   <div id="instructions">
-    <em>Loading ...</em>
+    <img src="/images/loading2.gif" alt="Loading ..." />
   </div>
 </div>
