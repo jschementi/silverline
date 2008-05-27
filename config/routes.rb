@@ -3,6 +3,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect "tryruby/instructions.:format", :controller => 'tryruby', :action => 'instructions'
 
+  map.connect "assistment", :controller => "build/assistment"
+  map.connect "build", :controller => "build/assistment"
+  map.connect "tutor", :controller => "tutor/class_assignment", :action => "list"
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

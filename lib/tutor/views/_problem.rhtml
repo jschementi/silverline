@@ -1,0 +1,35 @@
+<% link_id = "#{dom_id(problem)}_submit_link" %>
+<% indicator_id = (link_id + "_indicator") %>
+<% show = "Element.show('#{indicator_id}'); Element.hide('#{link_id}'); $('#{dom_id(problem)}_submit').disable();"%>
+<% hide = "Element.hide('#{indicator_id}'); Element.show('#{link_id}'); $('#{dom_id(problem)}_submit').enable();"%>
+
+<div class="problem problem_neutral round" id="<%= dom_id(problem) %>">
+	
+	<div class="problem_body">
+        <%= problem.body %>
+        <div class="problem_id" id="<%= dom_id(problem) %>_id">Problem #<%= problem.id %></div>
+    </div>
+	<div style="clear: both"></div>
+
+  <div class="hints">
+		<%= render_tutor :partial => "hints", :locals => { :problem => problem } %>
+		<%= render_tutor :partial => "request_help_link", :locals => { :problem => problem } %>
+	</div>
+
+	<% form_remote_tag :url => { :action => 'process_answer', :id => problem, :sequence_id => (@sequence.id unless @sequence.nil?) }, 
+	                    :loading => show, :complete => hide,
+	                    :html => {:id => "#{dom_id(problem)}_answer_form"} do %>
+		
+		<%= render_tutor :partial => "answers", :locals => { :problem => problem } %>
+
+		<%= submit_tag "Submit Answer", :style => "display: none", :id => "#{dom_id(problem)}_submit" %>
+		<div class="tutor_button round">
+			&nbsp;
+            <%= render_indicator(:pre => link_id) %>
+            <a id="<%= link_id %>" href="javascript://link" onclick="$('<%= dom_id(problem) %>_submit').click();">Submit Answer</a>
+		</div>
+		
+		<%= render_tutor :partial => "incorrect_messages", :locals => { :problem => problem } %>
+		
+	<% end %>
+</div>

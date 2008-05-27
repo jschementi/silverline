@@ -1,0 +1,29 @@
+<div class="pre_footer<%= controller.controller_name != "home" ? " page" : "" %>">
+	<div class="group">
+		<h3>About Assistment</h3>
+		<ul>
+			<li><%= link_to "Home", :controller => "/home" %></li>
+			<li><%= link_to "Build Content", :controller => "/home", :action => "build" %></li>
+			<li><%= link_to "Tutor Students", :controller => "/home", :action => "tutor" %></li>
+			<li><%= link_to "Assess Progress", :controller => "/home", :action => "assess" %></li>
+		</ul>
+	</div>
+	<div class="group">
+		<h3>Behind the Tutor</h3>
+		<ul>
+			<li><%= link_to "People", :controller => "/about", :action => "people" %></li>
+			<li><%= link_to "Publications", :controller => "/about", :action => "publications" %></li>
+			<li><%= link_to "Funding", :controller => "/about", :action => "funding" %></li>
+			<li><%= link_to "Press", :controller => "/about", :action => "press" %></li>
+		</ul>
+	</div>
+	<div>
+		Where's the rest of the system?
+		<br /><br />
+		You must <%= link_to "Log in", :controller => "account", :action => "login" %> first to navigate Assistment.
+		<br />
+		Don't have an account? <%= link_to "Sign up", :controller => "account", :action => "signup" %>!
+	</div>
+</div>
+
+<%= render :partial => "layouts/footer_copyright" %>

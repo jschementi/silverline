@@ -1,0 +1,4 @@
+<% @scaffold_count ||= 0 %>
+<ul class="problem_list" id="<%= dom_id(list) %>_list">
+    <%= render :partial => "build/problem/problem", :object => list, :locals => {:active => true} %>
+</ul>

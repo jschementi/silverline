@@ -1,0 +1,17 @@
+<div class="answer item" id="<%= dom_id(answer) %>">
+	<span class="<%= answer.is_correct ? 'correct' : 'incorrect' %>">
+        <%= answer.value %>
+    </span>
+	
+    <% if (not answer.is_correct) and msg_exists(answer.incorrect_message)  %>
+    <span class="message">
+        <%= answer.incorrect_message %>
+    </span>
+    <% end %>
+    
+    <span class="actions">
+      <span class="handle">Drag</span>
+    	<%= link_to_remote "edit", {:url => { :controller => "answer", :action => "edit", :id => answer }}, {:class => "edit"} %>
+    	<%= link_to_remote "delete", {:url => { :controller => "answer", :action => "delete", :id => answer }, :confirm => "Are you sure?"}, {:class => "destroy"} %>
+    </span>
+</div>

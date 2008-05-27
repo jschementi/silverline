@@ -1,0 +1,3 @@
+module Build::DefaultHelper
+  
+end

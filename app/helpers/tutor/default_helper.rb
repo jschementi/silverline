@@ -1,0 +1,3 @@
+module Tutor::DefaultHelper
+  
+end

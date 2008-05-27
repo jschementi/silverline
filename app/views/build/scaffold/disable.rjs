@@ -1,0 +1,5 @@
+page["#{dom_id(@problem.scaffold)}_list"].remove
+class_name = if @problem.main? then "main_problem name active" else "name active" end
+page[dom_id(@problem)].className = class_name
+page["toggle_scaffolding"].replace :partial => "build/scaffold/enable"
+page["hints_container"].replace :partial => "build/hint/hints"

@@ -1,0 +1,12 @@
+page.select('#flash_notice_problem_type').each do |value|
+  value.remove
+end
+page.insert_html :bottom, "problem_type_container", render_flash(:notice, {:style => "margin-top: 0px; float: left;", :id => "problem_type" } )
+
+# update version 
+page.replace "problem_versions_main", :partial => "build/problem/version"
+page << "showVersions()"
+
+page.delay(5.0) do
+  page.visual_effect :fade, "flash_notice_problem_type"
+end

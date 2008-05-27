@@ -1,0 +1,3 @@
+page[@hint].replace :partial => "hint"
+page.visual_effect :highlight, dom_id(@hint)
+page.sortable("hints_list", :url => {:controller => "build/hint", :action => "reorder"}, :tag => "div", :handle => "handle")

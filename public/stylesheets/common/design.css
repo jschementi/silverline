@@ -1,0 +1,392 @@
+/* layout ************************************************************/
+
+html, body {
+	text-align: center;
+	position: relative;
+}
+
+.frame {
+	position: relative;
+	text-align: center;
+}
+
+.banner {
+	clear: both;
+	height: 81px;
+}
+
+.section {
+	text-align: center;
+	width: 33%;
+	float: left;
+}
+
+.navigation_container {
+	width: 700px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+	clear: both;
+}
+
+/* banner **************************************************/
+
+.banner {
+	border-bottom: 2px solid #dadada;
+	position: relative;
+	background-color: white;
+}
+.banner .inner {
+	background-image: url(../../images/banner_gradient.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: 2;
+	height: 81px;
+	position: absolute;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	text-align: left;
+}
+.banner .right {
+	background-image: url(../../images/banner_bg.png);
+	background-repeat: repeat;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 50%;
+	height: 81px;
+}
+.banner .content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 700px;
+	position: relative;
+}
+.banner h2 {
+	position: absolute;
+	left: 50%;
+	right: 50px;
+	margin-top: 12px;
+	font-size: 24px;
+	font-weight: normal;
+	text-indent: -100000px;
+	background-image: url(../../images/slogan-trans.png);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	height: 54px;
+	color: #373737;
+	text-align: left;
+}
+.banner h1 a {
+	position: absolute;
+	left: 0px;
+	right: 50%;
+	text-indent: -100000px;
+	background-position: left;
+	background-repeat: no-repeat;
+	background-image: url(../../images/logo-trans.png);
+	height: 58px;
+	display: block;
+	margin-top: 8px;
+	cursor: pointer;
+}
+
+/* status bar ********************************************/
+
+.status {
+	height: 25px;
+	background-color: #005192;
+	border-top: 1px solid #3A9DED;
+	border-top: 1px solid #3A9DED;
+	margin-top: 13px;
+	text-align: center;
+}
+.status_content {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	margin-top: 3px;
+	font-size: 15px;
+}
+
+/* navigation ********************************************/
+
+.navigation {
+	background-image: url(../../images/nav_gradient.png);
+	background-repeat: repeat-x;
+	height: 257px;
+	padding-top: 10px;
+	border-bottom: 2px solid #dadada;
+}
+
+.section h3 {
+	font-weight: normal;
+	font-size: 18px;
+	color: black;
+}
+.section h3 {
+	/*background-image: url(../../images/nav_body-trans.png);
+	background-repeat: repeat-x;
+	background-position: bottom;*/
+	padding-top: 3px;
+	height: 22px;
+	border-bottom: 1px solid gray;
+}
+.section.assist h3,
+.section.assess h3 {
+	/*content: url(../../images/nav_end.png);*/
+}
+.section p {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 7px;
+	padding-right: 7px;
+	text-align: left;
+	font-size: 12px;
+}
+.section h2 a {
+	margin-left: auto;
+	margin-right: auto;
+	background-repeat: no-repeat;
+	width: 180px;
+	height: 185px;
+	text-indent: -10000px;
+	display: block;
+	cursor: pointer;
+}
+
+.preload_hover { visibility: hidden; height: 0px;}
+
+.section.assist h2 a { background-image: url(../../images/build-trans.png); }
+.section.assist h2 a:hover, .section.assist .preload_hover { background-image: url(../../images/build-over-trans.png); }
+.section.tutor h2 a { background-image: url(../../images/tutor-trans.png); }
+.section.tutor h2 a:hover, .section.tutor .preload_hover { background-image: url(../../images/tutor-over-trans.png); }
+.section.assess h2 a { background-image: url(../../images/assess-trans.png); }
+.section.assess h2 a:hover, .section.assess .preload_hover { background-image: url(../../images/assess-over-trans.png); }
+
+.account_content .actions {
+	margin-top: 5px;
+	padding-left: 5px;
+}
+
+/* body **************************************************/
+
+.body {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+}
+.group_wrapper .group {
+	margin: 0px 0px 25px 0px;
+	float: left;
+	width: 700px;
+}
+.group_wrapper .group .content.corners_applied {
+	margin-bottom: 20px;
+	width: 415px;
+}
+.group h2 {
+	color: #373737;
+	font-size: 24px;
+	font-weight: normal;
+	float: left;
+	width: 280px;
+	text-align: left;
+}
+.group .content {
+	color: #494949;
+	font-size: 18px;
+	font-weight: normal;
+	text-align: left;
+	float: left;
+	width: 390px;
+	margin: 0px;
+	padding: 10px;
+	background-color: #efffef;
+}
+
+.help_message {
+	background-color: #FDFFD9;
+	border: 1px solid #C7C7C7;
+	padding: 10px;
+	margin: 20px 10px 30px;
+}
+.warning_message {
+	background-color: #FFD9D9;
+	border: 1px solid #C7C7C7;
+	padding: 10px;
+	margin: 20px 10px 30px;
+}
+.notice_message {
+  color: #006600;
+	background: #99ff99;
+	border: 1px solid #006600;
+	padding: 10px;
+	margin: 20px 10px 30px;
+}
+
+/* container *********************************************/
+
+.container {
+	position: relative;
+}
+.container .container_left {
+	background-image: url(../../images/build/container-left.png);
+	width: 1px;
+	height: 61px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.container .container_round_left {
+	background-image: url(../../images/build/container-round-left.png);
+	width: 11px;
+	height: 30px;
+	position: absolute;
+	left: 1px;
+	top: 0px;
+}
+.container .container_repeat {
+	background-image: url(../../images/build/container-repeat-x.png);
+	background-repeat: repeat-x;
+	position: absolute;
+	left: 11px;
+	right: 11px;
+	top: 0px;
+	height: 30px;
+}
+.container .container_right {
+	background-image: url(../../images/build/container-right.png);
+	width: 1px;
+	height: 61px;
+	position: absolute;
+	right: 1px;
+	top: 0px;
+}
+.container .container_round_right {
+	background-image: url(../../images/build/container-round-right.png);
+	width: 9px;
+	height: 30px;
+	position: absolute;
+	right: 2px;
+	top: 0px;
+}
+
+.container .container_header {
+	position: relative;
+	top: 0;
+	left: 15px;
+}
+.container .container_header h4 {
+	font-size: 18px;
+	padding-top: 5px;
+}
+.container .container_body {
+	position: relative;
+	margin: 0px 15px;
+}
+.container_body .actions {
+}
+.container_body .item,
+.container_body tr.item td {
+	font-size: 14px;
+	border-bottom: 1px solid #BFBFBF;
+	position: relative;
+	margin-top: 11px;
+}
+.container_body .item .actions {
+	position: absolute;
+	right: 0px;
+	margin: -3px 5px;
+	
+}
+.container_body .item .actions a { 
+	float: left; 
+	margin: 0px 5px 5px;
+	font-size: 12px;
+}
+
+.container.spaced {
+    margin-top: 10px;
+}
+.actions.new_element_link {
+    margin-top: 20px;
+}
+
+.item .message {
+	color: #585858;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+.container_body .sublist {
+	padding-top: 20px;
+}
+.container_body .sublist .item {
+	font-size: 12px;
+	color: gray;
+	border-bottom: 1px solid #eee;
+	margin-top: 5px;
+}
+
+/* footer ************************************************/
+
+.pre_footer {
+	background-image: url(../../images/footer-nontrans.png);
+	width: 662px;
+	height: 110px;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+	text-align: left;
+	padding: 20px;
+}
+.pre_footer.page {
+	background-image: none;
+	width: auto;
+	border-top: 2px solid #d4d4d4;
+	background-color: #fefefe;
+}
+.pre_footer .group {
+	float: left;
+	width: 20%;
+	border-right: 1px solid #ddd;
+	margin-right: 15px;
+}
+.pre_footer .group.last {
+	border-right: 0px;
+}
+.pre_footer .group h3 {
+	margin-bottom: 5px;
+	color: #444;
+	font-size: 15px;
+}
+.pre_footer .group li {
+	list-style-type: none;
+	margin-bottom: 2px;
+	font-size: 13px;
+}
+.pre_footer .group li a {
+	color: #666;
+	text-decoration: underline;
+}
+.pre_footer .group li a:hover {
+	text-decoration: none;
+}
+
+.footer {
+	border-top: 2px solid #d4d4d4;
+	color: gray;
+	font-size: 12px;
+	padding: 2px;
+	height: 25px;
+}
+.footer a {
+  color: #1363AC;
+}

@@ -1,0 +1,13 @@
+<div id="answer_form">
+	<%= text_field 'answer', 'value', :size => 16 %>
+	Correct? <%= check_box 'answer', 'is_correct'  %>
+	
+	<% answer_dom_id = "answer_" + unless @answer.nil? then "#{@answer.id}_" else "" end %>
+	
+	<%= observe_field "answer_is_correct", :function => %Q(Element.toggle('#{answer_dom_id}incorrect_fields'); ), :on => "click" %> 
+	<% if @answer.nil? then style = "" elsif !(!@answer.nil? || !@answer.correct?) then style = "display: none;" else style="" end %>
+	<div id="<%= answer_dom_id %>incorrect_fields">
+	   <div style="<%= style %> margin-top: 10px">Incorrect Message: </div>
+	   <div style="<%= style %>"><%= text_area 'answer', 'incorrect_message', :rows => 2, :cols => 25 %></div>
+	</div>
+</div>

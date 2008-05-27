@@ -1,0 +1,3 @@
+page[dom_id(@hint)].replace_html :partial => "edit"
+page[dom_id(@hint)].hide
+page.visual_effect :blind_down, dom_id(@hint), :duration => 0.2

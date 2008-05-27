@@ -1,0 +1,14 @@
+	<div class="banner">
+		<div class="right">&nbsp;</div>
+		<div class="inner">
+			<div class="content">
+				<h1><%= link_to "Assistment", :controller => "/" %></h1>
+				<%= render :partial => "layouts/navigation" %>
+			</div>
+		</div>
+	</div>
+	<div class="submenu">
+		<div class="content" id="submenu_content">
+			<%= render :partial => "#{module_name}/submenu" %>
+		</div>
+	</div>

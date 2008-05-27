@@ -1,0 +1,87 @@
+/* assistment list ************************************** */
+
+#assistment_list {
+	margin-top: 5px;
+}
+
+#assistments {
+	width: 100%;
+}
+
+#assistments .assistment td {
+	padding-top: 3px;
+	margin: 0px;
+}
+
+#assistments .assistment td.id {
+	padding-bottom: 3px;
+	padding-right: 10px;
+	width: 9px;
+}
+
+#assistments .assistment td.name {
+	
+}
+#assistments .assistment td.actions {
+	text-align: right;
+	position: relative;
+	margin: 0px;
+	width: 70px;
+	white-space: nowrap;
+}
+#assistments .assistment td.actions a {
+	margin: 0px 2px 0px 2px;
+	float: none;
+	display: inline;
+}
+
+
+#assistments .assistment td.comments {
+	width: 16px;
+}
+#assistments .assistment td.comments a img.comment {
+	background: transparent url(/images/icons_ns2a.png) no-repeat scroll 0pt 0pt;
+	height: 14px; width: 16px;
+	border: 0px;
+}
+
+/*
+#assistments .assistment td.actions a.destroy {
+	padding: 0px 3px 1px;
+	color: red;
+	text-decoration: none;
+	font-weight: bold;
+	background-image: none;
+	margin-bottom: 2px;
+}
+#assistments .assistment td.actions a.destroy:hover {
+	background-color: red;
+	color: white;
+}
+*/
+
+#assistments .assistment td.actions a img.destroy {
+	background: transparent url(/images/icons_ns2a.png) no-repeat scroll -20px -100px;
+	height: 15px; width: 15px;
+	border: 0px;
+	display: inline;
+}
+
+#assistments .assistment td.actions a img.preview {
+	background: transparent url(/images/icon_magnifying.gif) no-repeat scroll 0pt 0pt;
+	height: 16px; width: 16px;
+	border: 0px;
+}
+
+#assistments .assistment td.actions a img.warning {
+	background: transparent url(/images/icons_ns2a.png) no-repeat scroll -80px 0px;
+	height: 16px; width: 16px;
+	border: 0px;
+}
+
+#assistments .assistment td.actions a img.versions {
+	background: transparent url(/images/icons1b.png) no-repeat scroll -60px 0px;
+	border: 1px solid black;
+	height: 7px; width: 7px;
+	border: 0px;
+}

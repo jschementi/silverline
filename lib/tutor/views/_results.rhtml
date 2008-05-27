@@ -1,0 +1,13 @@
+<a name="results_anchor"></a>
+<div class="results problem_neutral round">
+	
+	<div class="results_message" id="results_message">You are done with this Assignment!</div>
+
+	<div class="actions">
+		<% unless @assignment.nil? %>
+			<%= link_to "Back to Assignments", {:action => :list, :student_class_id => @assignment.student_class.id}, {:class => "right"}%>
+			<!--<a href="page.html" class="right">Goto next Assignment</a>-->
+		<% end %>
+	</div>
+	
+</div>

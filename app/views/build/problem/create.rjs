@@ -1,0 +1,1 @@
+page.insert_html :bottom, "#{dom_id(@scaffold)}_list", :partial => "build/problem/problem", :object => @problem

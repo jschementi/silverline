@@ -1,0 +1,45 @@
+<% if @problem.main? %>
+    <div class="title">
+        <h3>
+          <%= in_place_editor_field_on_complete :assistment, :name, "$('heading_assistment_name').update($('assistment_name_#{@assistment.id}_in_place_editor').innerHTML); $('problem_link_#{@problem.id}').update($('problem_name_#{@problem.id}_in_place_editor').innerHTML);" %>
+        </h3>
+        <span class="actions">
+            <!-- <%= link_to_remote "Edit", {:url => {:controller => "assistment", :action => :edit, :id => @problem.assistment}}, {:class => "edit"} %> -->
+            <%= link_to "Destroy", {:controller => "assistment", :action => :destroy, :id => @problem.assistment}, {:post => true, :confirm => "Are you sure?", :class => "destroy"} %>
+            <% if @problem.has_scaffolds? %>
+				<%= render :partial => "build/scaffold/disable" %>
+			<% else %>
+				<%= render :partial => "build/scaffold/enable" %>
+			<% end %>
+			<%= render_preview_link :assistment, @assistment %>
+        </span>
+    </div>
+<% else %>
+	<div class="title">
+        <h3><%= in_place_editor_field_on_complete :problem, :name, "$('heading_assistment_name').update($('problem_name_#{@problem.id}_in_place_editor').innerHTML + ' (scaffold)'); $('problem_link_#{@problem.id}').update($('problem_name_#{@problem.id}_in_place_editor').innerHTML);" %></h3>
+        <span class="actions">
+            <!-- <%= link_to_remote "Edit", {:url => {:controller => "assistment", :action => :edit, :id => @problem.assistment}}, {:class => "edit"} %> -->
+            <%= link_to_remote "Destroy", { :url => {:controller => "problem", :action => :destroy, :id => @problem}, :post => true, :confirm => "Are you sure?" }, { :class => "destroy" } %>
+
+            <% if @problem.has_scaffolds? %>
+				<%= render :partial => "build/scaffold/disable" %>
+			<% else %>
+				<%= render :partial => "build/scaffold/enable" %>
+			<% end %>
+			<%= link_to_remote "Add new problem to this scaffold ", { 
+					:url => { 
+						:controller => "problem", :action => "create", :scaffold_id => @problem.parent_scaffold 
+					}, 
+					:post => true 
+				}, { 
+					:class => "new",
+					:style => "margin-left: 15px; margin-top: 3px;"
+				} %>
+        </span>
+    </div>
+<% end %>
+
+
+<%= render :partial => "build/problem/problem_container" %>
+<%= render :partial => "build/answer/answers" %>
+<%= render :partial => "build/hint/hints" %>

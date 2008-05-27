@@ -1,0 +1,72 @@
+/* forms *************************************************/
+
+select {
+	/*border: 2px solid #6B7C6A;
+	background-color: #EEEAD9;*/
+	margin: 2px;
+	padding: 2px;
+	/*font-family: "Georgia", sans-serif;*/
+	font-family: "Trebuchet MS", sans-serif;
+	font-weight: normal;
+	font-size: 15px;
+}
+option {
+	padding-right: 6px;
+}
+
+label {
+	font-size: 18px;
+	width: 150px;
+	float: left;
+}
+
+input, textarea {
+	padding: 2px;
+	margin: 2px;
+	font-family: "Trebuchet MS", sans-serif;
+	font-weight: normal;
+	font-size: 15px;
+	border-right: 2px solid #ddd;
+	border-bottom: 2px solid #ddd;
+}
+input:focus, textarea:focus, select:focus {
+	background-color: white;
+}
+/*textarea {
+	width: 98%;
+	margin-right: 2%;
+}*/
+.submit {
+	font-size: 15px;
+}
+a.submit.button {
+	color: white;
+}
+a.submit {
+	padding: 6px;
+}
+
+input.submit, .submit.button, .editor_ok_button {
+	/*border-top: 2px solid #909D8F;
+	border-left: 2px solid #7F8E7E;
+	border-right: 2px solid #586657;
+	border-bottom: 2px solid #4C584B;
+	background-color: #6B7C6A;
+	color: white;*/
+	font-size: 16px;
+	cursor: hand;
+}
+input.submit:hover, .submit.button:hover, .editor_ok_button:hover {
+	/*border-top: 2px solid #4085B8;
+	border-left: 2px solid #2272AD;
+	border-right: 2px solid #004C83;
+	border-bottom: 2px solid #004171;
+	background-color: #005CA0;*/
+}
+input.submit:focus:hover, .submit.button:focus:hover, .editor_ok_button:focus:hover {
+	/*border-bottom: 2px solid #4085B8;
+	border-right: 2px solid #2272AD;
+	border-left: 2px solid #004C83;
+	border-top: 2px solid #004171;
+	background-color: #005CA0;*/
+}

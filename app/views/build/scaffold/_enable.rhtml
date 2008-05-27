@@ -1,0 +1,2 @@
+<%= link_to_remote "Enable scaffolding for this problem", {:url => {
+	:controller => "scaffold", :action => "enable", :problem_id => @problem}}, {:class => "new", :id => "toggle_scaffolding", :style => "margin-top: -6px; margin-left: 15px;"} %>

@@ -1,0 +1,6 @@
+page[dom_id(@answer)].replace_html :partial => "edit"
+page[dom_id(@answer)].hide
+page.visual_effect :blind_down, dom_id(@answer), :duration => 0.2
+if @answer.is_correct
+  page["#{dom_id(@answer)}_incorrect_fields"].toggle  
+end

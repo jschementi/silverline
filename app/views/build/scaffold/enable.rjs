@@ -1,0 +1,5 @@
+page.insert_html :bottom, "#{dom_id(@problem)}_tree", :partial => "build/scaffold/scaffold", :object => @problem.scaffold
+class_name = if @problem.main? then "main_problem name active" else "name active" end
+page[dom_id(@problem)].className = class_name
+page["toggle_scaffolding"].replace :partial => "build/scaffold/disable"
+page["hints_container"].replace :partial => "build/hint/hints"

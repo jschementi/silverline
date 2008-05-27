@@ -1,0 +1,64 @@
+.menu .tab {
+	margin: 0px 5px;
+}
+.banner .menu .tab .menu_active .autoPadDiv, .banner .account_content .tab .autoPadDiv {
+	padding: 0px 8px 4px;
+}
+.banner .tab a {
+	color: #005192;
+	font-size: 20px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.banner .tab a:hover {  
+	text-decoration: none;
+}
+.banner .tab .menu_active {  
+	background-color: #005192;
+}
+.banner .tab .menu_active a {
+	text-decoration: none;
+	color: white;
+}
+.account_content .actions a {
+	font-size: 14px;
+}
+
+.submenu span {
+	padding: 0px 10px;
+	padding-bottom: 5px;
+}
+.submenu span a {
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.submenu span a:hover {
+	text-decoration: underline;
+}
+.submenu span.active {
+	background-image: url(../../images/carrot.png);
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+
+.page_title {
+	font-size: 19px;
+	color: #1363AC;
+	font-weight: normal;
+}
+
+.breadcrumbs, .breadcrumbs a:link, .breadcrumbs a:visited {
+	color: #A0A0A0;
+	font-size: 11px;
+}
+.breadcrumbs a:link, .breadcrumbs a:visited { text-decoration: underline; }
+.breadcrumbs a:hover { text-decoration: none; background-color: white; }
+
+.subtitle, .subtitle a:link, .subtitle a:visited {
+	color: #1363AC;
+	font-size: 16px;
+}
+.subtitle a:link, .subtitle a:visited { text-decoration: underline; }
+.subtitle a:hover { text-decoration: none; background-color: white; }

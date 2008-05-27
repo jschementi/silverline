@@ -1,0 +1,25 @@
+<% content_for "heading" do %>
+    Build &rsaquo; Assistment
+<% end %>
+
+<div class="frame_content">
+    <div class="help_message" id="assistment_index_message">
+        An Assistment is a problem and any tutoring help associated with the problem. You can add
+        hints to problems, incorrect messages on answers, and even subsequent problems to help give the student back on track.
+    </div>
+
+    <div class="actions new_element_link" id="new_assistment_link">
+        <%= link_to 'Create New Assistment', { :action => :create }, { :method => :post, :class => :new } %>
+    </div>
+
+    <% render_container ("Assistments", nil, {
+		:spaced => true,
+		:id => "my_assistment_list", 
+		:style=> "padding-bottom: 10px",
+        :hidden_message => "Assistments are hidden; click on the 'Assistment' link above to show them."
+	}) do %>
+
+        <%= render(:partial => "build/assistment/assistments_list") %>
+
+    <% end %>
+</div>

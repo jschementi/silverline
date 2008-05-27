@@ -1,0 +1,2 @@
+module Build::AssistmentHelper
+end

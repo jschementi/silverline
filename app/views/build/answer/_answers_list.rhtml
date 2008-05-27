@@ -1,0 +1,15 @@
+<div class="answers_list" id="answers_list">
+	<% if @problem.answers.empty? %>
+	<div class="help_message">
+		Answers are exactly what they say; answer to this problem, and 
+		a way to indicate whether they are correct or incorrect. Incorrect 
+		messages are little hints you can give the student when they select a
+		incorrect message (assuming there are no scaffolding problems ... they will
+		be pushed to those no matter what).
+	</div>
+	<% end %>
+    <%= render :partial => "build/answer/answer", :collection => @problem.answers %>
+</div>
+<%= sortable_element "answers_list", 
+    :url => { :controller => "build/answer", :action => "order", :problem_id => @problem.id },
+    :tag => "div", :handle => "handle" %>

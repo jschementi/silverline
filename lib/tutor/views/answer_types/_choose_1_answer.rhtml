@@ -1,0 +1,6 @@
+<em class="answer_message">Select one:</em>
+<ul class="answers">
+<% for answer in problem.answers %>
+    <li><%= radio_button("answer", "id", "#{answer.id}") %><label class="tutor_input_label" for="answer_id_<%= answer.id%>"><%= answer.value %></label></li>
+<% end %>
+</ul>

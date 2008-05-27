@@ -1,0 +1,11 @@
+<% content_for "heading" do %>
+	Build &rsaquo; <span id="heading_assistment_name"><%= @assistment.name %></span>
+<% end %>
+
+<div class="build">
+	<%= render :partial => "build/problem/list", :object => @assistment.problem %>
+	
+    <div id="problem">
+        <%= render :partial => "build/problem/show" %>
+    </div>
+</div>

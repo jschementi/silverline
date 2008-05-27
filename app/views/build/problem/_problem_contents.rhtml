@@ -1,0 +1,9 @@
+<div id="problem_body_form" >
+	<% form_remote_for :problem, @problem, :url => {:controller => "build/problem", :action => 'save', :id => @problem } do |f| -%>
+		<%= f.text_area :body %>
+		<div class="actions" id="problem_body_actions">
+			<%= submit_tag "Save Problem Body", { :class => "save link" } %>
+		</div>
+	<% end -%>
+	
+</div>

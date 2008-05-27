@@ -1,0 +1,5 @@
+<ul class="scaffold_list" id="<%= "#{dom_id(scaffold)}_list"%>">
+	<% scaffold.problems.each do |problem| %>
+	    <%= render :partial => "build/problem/problem", :object => problem %>
+	<% end %>
+</ul>

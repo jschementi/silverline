@@ -1,0 +1,99 @@
+body {
+	min-width: 780px;
+}
+
+.banner, .banner .inner, .banner .right {
+	height: 36px;
+}
+
+/* alternate banner colors for when certain user types are logged in */
+
+	.banner.administrator {
+		border-bottom: 2px solid #660000;
+	}
+	.banner.administrator .inner, .banner.administrator .right {
+		background-image: none;
+		background-color: #ff5559;
+	}
+
+.banner .content {
+	position: relative;
+	width: auto;
+	margin: 0px 20px;
+}
+.banner h1 {
+	width: 148px;
+}
+.banner h1 a {
+	position: relative;
+	text-indent: -100000px;
+	background-position: left;
+	background-repeat: no-repeat;
+	background-image: url(../../images/logo-small-trans.png);
+	width: 148px;
+	height: 32px;
+	display: block;
+	left: auto;
+	right: auto;
+	margin-top: 1px;
+}
+
+.menu, .account_content {
+	position: absolute;
+	left: 175px;
+	top: 12px;
+}
+.account_content { right: 0px; left: auto;}
+.banner .menu .tab, .banner .account_content .tab { 
+	float: left;
+	position: relative;
+}
+.banner .menu .tab div {
+
+}
+
+.account {
+	border-right: 1px solid #005192;
+}
+.submenu {
+	text-align: center;
+}
+.submenu .content {
+	text-align: left;
+	margin: 0px 15px 10px;
+	padding: 5px 10px;
+	background-color: #005192;
+}
+.submenu .content .autoPadDiv { padding-top: 5px; }
+.submenu span { 
+	list-style-type: none; 
+	display: inline;
+}
+
+.frame {
+	margin-right: 50px;
+	margin-bottom: 50px;
+	left: 25px;
+	top: 0px;
+	text-align: left;
+}
+
+.page_title {
+	border-bottom: 1px solid #BFBFBF;
+}
+
+.breadcrumbs {
+	position: absolute;
+	right: 0px;
+	top: 10px;
+}
+
+.subtitle {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.frame_content {
+	margin-top: 20px;
+}

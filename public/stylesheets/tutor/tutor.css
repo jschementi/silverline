@@ -1,0 +1,163 @@
+@import url("round.css");
+@import url("comments.css");
+
+.problem, .results {
+	padding: 0px;
+	font-size: 18px;
+	position: relative;
+}
+.problem .c, .results .c {
+	padding: 0px;
+}
+.problem div.problem_body, .results div.results_message {
+	border-bottom: 1px solid #bfbfbf;
+	padding: 0px 10px;
+}
+.problem form {
+	padding: 0px 10px;
+}
+.problem form input.button {
+	background-color: #6E9FC9;
+	padding: 0;margin:0; border: 0;
+	top: 5px; right: 2px; left: 2px; bottom: 5px;
+}
+
+.tutor_button {
+	text-align: center;
+	width: 250px;
+	position: relative;
+	font-size: 8px;
+	margin: 10px 0px;
+}
+.tutor_button a, .tutor_button input {
+	color: white;
+	font-size: 16px;
+	text-decoration: none;
+	position: absolute;
+	top: 5px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
+.tutor_button input:hover {
+	cursor: hand;
+}
+
+.problem .answers {
+	font-size: 20px;
+}
+.problem .answer_message {
+	color: gray;
+	font-size: 12px;
+}
+.problem li { 
+	list-style-type: none;
+	border-bottom: 1px solid #bfbfbf;
+	padding: 2px 0px;
+}
+.problem li input.option {
+	margin-right: 7px;
+}
+
+.message {
+	margin: 15px;
+	background-repeat: no-repeat;
+	font-size: 18px;
+	padding: 0px 40px;
+}
+.message.correct     { background-image: url(../../images/tutor/correct.png); min-height: 28px; padding-top: 5px; }
+.message.incorrect   { background-image: url(../../images/tutor/incorrect.png); min-height: 19px;}
+
+.problem .blocker {#FDFFD9
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;
+	z-index: 90;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	background-color: white;
+}
+
+.problem .warning_message, .problem .help_message {
+	font-size: 14px;
+}
+
+.problem .hints {
+	padding: 0 10px;
+}
+
+.hint_id, .problem_id {
+	color: #A0A0A0;
+	font-size: 11px;
+	text-align: right;
+}
+
+.scaffold {
+	padding-left: 2em;
+}
+
+.results .results_message {
+	font-size: 24px;
+}
+.results .statistics, .results .rating {
+	margin: 20px;
+	width: 95%;
+}
+.results .statistics td {
+	border-bottom: 1px solid #bfbfbf;
+	padding: 0.2%;
+}
+.results .statistics .description {
+	width: 35%;
+}
+.results .rating {
+	margin-top: 0px;
+	background: no-repeat left top;
+	padding-top: 20px;
+	padding-bottom: 0px;
+	padding-left: 130px;
+	height: 83px;
+}
+.rating.good_job {
+	background-image: url(../../images/tutor/smiley.png);
+}
+.rating h3 {
+	font-size: 24px;
+	color: black;
+}
+.rating p {
+	color: gray;
+}
+.results .actions {
+	position: relative;
+	padding: 0px 20px;
+	margin-top: 20px;
+}
+.results .actions .up {
+	float: left;
+	padding-top: 4px;
+	height: 30px;
+	padding-left: 38px;
+	background: url(../../images/tutor/up.png) no-repeat top left;
+}
+.results .actions .right {
+	float: right;
+	padding-top: 4px;
+	height: 32px;
+	padding-right: 36px;
+	background: url(../../images/tutor/right.png) no-repeat top right;
+}
+.graphframe{
+	width: 600px;
+	height: 100px;
+	border: 2px solid #000000;
+}
+
+img.assistment_image {
+	border: 1px solid #bbb;
+	margin: 5px;
+}
+
+label.tutor_input_label {
+	float: none;
+	font-size: 20px;
+}

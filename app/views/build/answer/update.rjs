@@ -1,0 +1,2 @@
+page[dom_id(@answer)].replace :partial => "answer"
+page.visual_effect :highlight, dom_id(@answer)

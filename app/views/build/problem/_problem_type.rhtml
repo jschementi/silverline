@@ -1,0 +1,8 @@
+<div id="problem_type_container" style="clear: left; margin-top: 20px;">
+  <form id="problem_type_form">
+    <b>Problem Type</b>: <%= collection_select(:problem, :problem_type_id, ProblemType.find(:all), :id, :description) %>
+    <%= observe_field "problem_problem_type_id", :url => { 
+			:controller => "problem", :action => 'save_type', :id => @problem
+		}, :with => "problem_type_id" %>
+	</form>
+</div>

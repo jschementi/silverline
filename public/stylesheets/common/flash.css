@@ -1,0 +1,26 @@
+/* flash ******************************************/
+
+h3.flash_notice, h3.flash_warning,
+h3.flash_form_notice, h3.flash_form_warning {
+	font-size: 16px;
+	padding: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+h3.flash_notice, h3.flash_form_notice {
+	color: #006600;
+	background: #99ff99;
+	border-top: 1px solid #006600;
+	border-bottom: 1px solid #006600;
+}
+h3.flash_warning, h3.flash_form_warning, h3.search_warning {
+	color: #660000;
+	background: #ff9999;
+	border-top: 1px solid #660000;
+	border-bottom: 1px solid #660000;
+}
+h3.flash_form_notice, h3.flash_form_warning {
+	margin-bottom: 10px;
+}

@@ -1,0 +1,20 @@
+<% content_for "heading" do %>
+	<%= @class_assignment.sequence.name %>
+<% end %>
+
+<div class="frame_content" id="frame_content">
+	<div id="assistment">
+		<div class="results problem_neutral round">
+	
+			<div class="results_message" id="results_message">You are done with this Assignment!</div>
+
+			<div class="actions">
+				<% unless @class_assignment.nil? %>
+					<%= link_to "Back to Assignments", {:action => :list, :student_class_id => @class_assignment.student_class.id}, {:class => "right"}%>
+					<!--<a href="page.html" class="right">Goto next Assignment</a>-->
+				<% end %>
+			</div>
+	
+		</div>
+	</div>
+</div>
