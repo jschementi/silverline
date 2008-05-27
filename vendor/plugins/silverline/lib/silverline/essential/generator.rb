@@ -3,6 +3,10 @@
 require "filesystemwatcher"
 require 'silverline/essential/xap'
 
+def logger
+  RAILS_DEFAULT_LOGGER
+end
+
 # Generates the XAP on modification of watched files
 module Silverline::Essential::Generator
   include Silverline
@@ -11,7 +15,6 @@ module Silverline::Essential::Generator
   # List of files/directories to watch for modification.
   # Triggers generation of the Silverlight package (XAP)
   def self.register
-    puts "** Initializing Silverlight"
     watcher = FileSystemWatcher.new
     watcher.addDirectory CLIENT_ROOT
     watcher.addDirectory PLUGIN_CLIENT
@@ -28,7 +31,7 @@ module Silverline::Essential::Generator
   end
   
   def self.generate
-    puts "** Generating client.xap"
+    logger.info "Silverline: Generating client.xap"
     %W(#{XAP_FILE}).each do |file|
       File.delete(file) if File.exists?(file)
     end
