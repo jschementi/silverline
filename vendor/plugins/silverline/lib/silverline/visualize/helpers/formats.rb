@@ -1,7 +1,7 @@
 # Rendering helpers based on the format of template being rendered
 module Silverline::Visualize::Helpers::Formats
   
-  def ___ag_render_ruby_partial(filename, options)
+  def ___ag_render_ruby_partial(filename, options, other)
     return silverlight_object options.merge({
       :start      => "app_render_rb",
       :rb_to_run  => "views/#{@__cpath}/#{filename}"
@@ -13,7 +13,7 @@ module Silverline::Visualize::Helpers::Formats
   end
   
 
-  def ___ag_render_xaml_partial(filename, options)
+  def ___ag_render_xaml_partial(filename, options, other)
     defaults = {
       :start          => "app_render_xaml",
       :xaml_to_render => "views/#{@__cpath}/#{filename}",

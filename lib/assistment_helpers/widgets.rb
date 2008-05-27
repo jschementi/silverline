@@ -1,10 +1,5 @@
 module AssistmentHelpers::Widgets
 
-  # For documenation of the options, see: http://boxover.swazz.org/
-  def boxover_tooltip(options = {})
-     options.map { |key, value| "#{key}=[#{value}]" }.join(" ")
-  end
-
   def render_indicator(options)
     defaults = {:pre => "", :style => ""}
     options = defaults.merge(options)

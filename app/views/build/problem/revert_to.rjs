@@ -1,2 +1,0 @@
-page.replace "problem_container", :partial => "problem_container"
-page << "showVersions()"

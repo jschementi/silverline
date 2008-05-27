@@ -12,7 +12,7 @@ module Silverline::Teleport::Rendering
   
     # Makes sure there a silverlight_object on the page 
     # if we're rendering with client actions
-    def render_with_client(options=nil, &block)
+    def render_with_client(options=nil, other = {}, &block)
       if has_client_actions?
         @already_added_silverlight_object ||= :false
         act = "#{render_to_string_with_noclient(options.merge({:layout => false}), &block)}"
@@ -24,9 +24,9 @@ module Silverline::Teleport::Rendering
           @already_added_silverlight_object = :true
         end
         output << act
-        render_without_client(:text => output, :layout => true)
+        render_without_client({:text => output, :layout => true}, other)
       else
-        render_without_client(options, &block)
+        render_without_client(options, other, &block)
       end
     end
     
@@ -53,8 +53,16 @@ module Silverline::Teleport::Rendering
       end
     
       def class_and_action_from(options)
+        if options[:url].has_key?(:controller)
+          type = begin 
+            "#{options[:url][:controller].camelize}Controller".constantize
+          rescue
+            "#{"#{self.controller.controller_path.split("/")[0..-2].join("/")}/#{options[:url][:controller]}".camelize}Controller".constantize
+          end
+        end
+          
         [
-          options[:url].has_key?(:controller) ? "#{options[:url][:controller].capitalize}Controller".constantize : self.controller.class,
+          options[:url].has_key?(:controller) ? type : self.controller.class,
           options[:url].has_key?(:action) ? options[:url][:action] : self.controller.action_name
         ]
       end

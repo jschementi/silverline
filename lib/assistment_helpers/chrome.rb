@@ -21,7 +21,6 @@ module AssistmentHelpers::Chrome
     %Q(
       #{ stylesheet_link_tag "build"}
       #{ render_default_head }
-      #{ javascript_include_tag "boxover" }
       #{ render_title(:subject => "Build") }
     )
   end

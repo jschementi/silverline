@@ -1,7 +1,5 @@
 page.replace_html 'problem', :partial => "build/problem/show"
 
-page << "showVersions()"
-
 page.select('.problem_list .active').first.className = "name"
 page.select('.problem_list .name').first.className = "main_problem name"
 

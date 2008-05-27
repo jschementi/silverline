@@ -62,9 +62,4 @@ class Build::ProblemController < Build::DefaultController
     end
   end
   
-  def revert_to
-    @problem = Problem.find(params[:id])
-    @problem.revert_to!(params[:version])
-  end
-  
 end
