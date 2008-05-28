@@ -35,7 +35,9 @@ module Silverline::Essential::Html
   private
   
     def http_host
-      session.cgi.instance_variable_get(:"@request").params["HTTP_HOST"]
+      request = session.cgi.instance_variable_get(:"@request")
+      return session.cgi.env_table['HTTP_HOST'] if request.nil?
+      request.params["HTTP_HOST"]
     end
 
     def generate_init_params(options)
