@@ -1,16 +1,15 @@
 def compute
-  brs = "<br />"; @count ||= 0
   @code = document.code.value.to_s
+  @result = eval(@code) unless @code == ""
+rescue => e
+  @result = e.class
+ensure
   document.result.innerHTML = 
-    "#{document.result.innerHTML}#{brs if @count > 0}<span id=\"prompt\">&raquo;&nbsp;</span>"
+    "#{document.result.innerHTML}#{"<br />" unless document.result.innerHTML.to_s == ""}<span id=\"prompt\">&raquo;&nbsp;</span>"
   unless @code == ""
-    @result = eval(@code)
     document.result.innerHTML = "#{document.result.innerHTML}#{@code}<br />#{@result}"
   end
-  document.code.value = ""; @count += 1
-rescue => e
-  # TODO: handle any errors
-  raise e
+  document.code.value = ""
 end
 
 def move_on
