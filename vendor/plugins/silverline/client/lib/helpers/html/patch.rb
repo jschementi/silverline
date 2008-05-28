@@ -38,7 +38,17 @@ class HtmlElementCollection
   end
 end
 
+require 'lib/rquery/manipulation'
+
 class HtmlElement
+  include RQuery::Manipulation::ChangingContents
+  include RQuery::Manipulation::InsertingInside
+  include RQuery::Manipulation::InsertingOutside
+  include RQuery::Manipulation::InsertingAround
+  include RQuery::Manipulation::Replacing
+  include RQuery::Manipulation::Removing
+  include RQuery::Manipulation::Copying
+  
   def [](index)
     val = get_attribute(index)
     return get_property(index) if val.nil?

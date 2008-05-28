@@ -1,15 +1,17 @@
 def compute
-  @code = document.code.value.to_s
-  @result = eval(@code) unless @code == ""
+  @code = $d.code.value.to_s
+  @result = eval(@code) unless @code.empty?
 rescue => e
   @result = e.class
 ensure
-  document.result.innerHTML = 
-    "#{document.result.innerHTML}#{"<br />" unless document.result.innerHTML.to_s == ""}<span id=\"prompt\">&raquo;&nbsp;</span>"
-  unless @code == ""
-    document.result.innerHTML = "#{document.result.innerHTML}#{@code}<br />#{@result}"
-  end
-  document.code.value = ""
+  show_result
+  @code = @result = nil
+end
+
+def show_result
+  $d.result.append(tag("span", :id => 'prompt') { "&raquo;&nbsp;" })
+  $d.result.append(@code.empty? ? tag("br") : "#{tag("span"){ @code }}#{tag("div"){ @result.to_s }}")
+  $d.code.value = ""
 end
 
 def move_on
@@ -26,21 +28,21 @@ end
 
 def next_instruction
   @current ||= 0
-  document.instructions.innerHTML = @instructions[@current].to_s
+  $d.instructions.html = @instructions[@current].to_s
   @current += 1 if @current < @instructions.size - 1
 end
 
 def hook_run
-  document.run.onclick do |s, a|
-    document.loading.innerHTML = "<img src='/images/loading.gif' alt='evaluating ...' />"
+  $d.run.onclick do |s, a|
+    document.loading.html = tag('img', :src => '/images/loadinfo.net.gif', :alt => 'evaluating ...')
     compute
     move_on
-    document.loading.innerHTML = ''
+    document.loading.html = ''
     HtmlPage.window.eval "moveTo('console', 'code')"
   end
 end
 
-document.code.value = ""
-document.code.focus
+$d.code.value = ''
+$d.code.focus
 hook_run
 get_instructions

@@ -1,5 +1,6 @@
 include System
 include System::Windows
+require 'lib/helpers/debug'
 
 $PARAMS = {}
 Application.current.init_params.collect do |pair|
@@ -8,4 +9,4 @@ end
 
 $DEBUG = $PARAMS[:debug] || false
 
-require 'lib/application'
+require 'lib/silverlight_application'

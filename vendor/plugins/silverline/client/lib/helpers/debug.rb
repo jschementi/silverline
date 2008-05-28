@@ -1,3 +1,6 @@
+include System::Windows
+include System::Windows::Browser
+
 module Debug
   def self.included(base)
     base.extend(ClassMethods)
@@ -6,13 +9,13 @@ module Debug
   
   module ClassMethods
     def puts(msg)
-      if document.get_element_by_id('debug_print').nil?
-        div = document.create_element('div')
-        div[:id] = "debug_print"
-        document.get_elements_by_tag_name("body").get_Item(0).append_child(div)
+      div = HtmlPage.document.get_element_by_id('debug_print')
+      if div.nil?
+        div = HtmlPage.document.create_element('div')
+        div.set_attribute('id', "debug_print")
+        HtmlPage.document.get_elements_by_tag_name("body").get_Item(0).append_child(div)
       end
-      dp = document.get_element_by_id('debug_print')
-      dp.set_property('innerHTML', "#{dp.get_property('innerHTML')}<hr />#{msg}")
+      div.set_property('innerHTML', "#{div.get_property('innerHTML')}<hr />#{msg}")
     end
             
     def log(msg)
@@ -30,3 +33,16 @@ module Debug
     end
   end
 end
+
+class Logger
+  def debug(msg)
+    puts msg
+  end
+private
+  include Debug
+end
+
+def logger
+  Logger.new
+end
+$logger = logger
