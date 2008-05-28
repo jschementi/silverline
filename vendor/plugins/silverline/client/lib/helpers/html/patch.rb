@@ -13,6 +13,11 @@ class HtmlDocument
   def get_element_by_id(id)
     orig_get_element_by_id(id.to_s.to_clr_string)
   end
+  
+  alias_method :orig_get_elements_by_tag_name, :get_elements_by_tag_name
+  def get_elements_by_tag_name(name)
+    orig_get_elements_by_tag_name(name.to_s.to_clr_string)
+  end
 end
 
 class HtmlElementCollection
@@ -27,6 +32,9 @@ class HtmlElementCollection
   end
   def last
     self[size - 1] if size > 0
+  end
+  def empty?
+    size == 0
   end
 end
 
@@ -45,7 +53,7 @@ class HtmlElement
   def method_missing(m, *args, &block)
     super
   rescue => e
-    if(block.nil?)
+    if block.nil?
       if m.to_s[-1..-1] == "="
         self[m.to_s[0..-2]] = args.first
       else
@@ -94,6 +102,7 @@ class HtmlElement
   def set_style_attribute(index, value)
     orig_set_style_attribute(index.to_s.to_clr_string, value)
   end
+
 end
 
 class HtmlStyle
