@@ -10,7 +10,7 @@ end
 
 def show_result
   $d.result.append(tag("span", :id => 'prompt') { "&raquo;&nbsp;" })
-  $d.result.append(@code.empty? ? tag("br") : "#{tag("span"){ @code }}#{tag("div"){ @result.inspect }}")
+  $d.result.append(@code.empty? ? tag("br") : (tag("span"){ @code } + tag("div"){ @result.inspect }))
   $d.code.value = ""
 end
 

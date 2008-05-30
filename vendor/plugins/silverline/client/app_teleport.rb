@@ -23,7 +23,7 @@ class Teleport < SilverlightApplication
     def find_client_links
       # TODO: FIX THIS HACK! it should be l['title'] in the block!
       titles = @client_links.collect { |l| l.values.last }
-      t =  document.get_elements_by_tag_name("a")[1].title.to_s
+      t = document.get_elements_by_tag_name("a").first.title.to_s
       document.get_elements_by_tag_name("a").select {
         |a| titles.include?(a.title.to_s) && a.rel.to_s == "silverlight"
       }

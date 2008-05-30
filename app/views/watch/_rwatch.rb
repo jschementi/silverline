@@ -3,10 +3,17 @@ render :partial => "watch", :properties => { :type => "Canvas" }
 def content
   Application.current.host.content
 end
+#root.width = HtmlPage.window.eval("screen.width").to_i
+#root.height = HtmlPage.window.eval("screen.height").to_i
 
-root.width = HtmlPage.window.eval("screen.width").to_i
-root.height = HtmlPage.window.eval("screen.height").to_i
+# Toggle indiglow =) ##########################################
+root.DayButton.mouse_left_button_down do |s, e|
+  animation = @day ? root.Night : root.Day
+  animation.begin
+  @day = !@day
+end
 
+# Side watch buttons ########################################## 
 root.BottomButton.mouse_left_button_down do |s, e|
   s.PressBottomButton.begin
   s.StartChronograph.stop
@@ -45,12 +52,8 @@ root.TopButton.mouse_left_button_up do |s, e|
   end
 end
 
-root.DayButton.mouse_left_button_down do |s, e|
-  animation = @day ? root.Night : root.Day
-  animation.begin
-  @day = !@day
-end
 =begin
+# Informational buttons #######################################
 def open_link(s, e)
   HtmlPage.window.navigate(s.tag, "_blank")
 end
@@ -66,6 +69,8 @@ end
 root.AboutButton.mouse_left_button_down {|s,e| show_about}
 root.About.mouse_left_button_down {|s,e| show_about}
 =end
+
+# Fullscreen/Resizing #########################################
 root.FullScreen.mouse_left_button_down do |s,e|
   content.IsFullScreen = !content.IsFullScreen
 end
@@ -76,6 +81,20 @@ end
 content.resized {|s,e| on_resized}
 content.full_screen_changed {|s,e| on_resized}
 
+def resize(width, height)
+  return if width == 0 || height == 0
+  width = [width, HtmlPage.window.eval('screen.width').to_i].min
+  height = [height, HtmlPage.window.eval('screen.height').to_i].min
+  scalex = width / root.Watch.width
+  scaley = height / root.Watch.height
+  scale = [scalex, scaley].min
+  root.PageScale.ScaleX = scale
+  root.PageScale.ScaleY = scale
+  root.PageTranslation.x = (width - root.Watch.width * scale) / 2.0
+  root.PageTranslation.y = (height - root.Watch.height * scale) / 2.0
+end
+
+# Actual Clock logic; set up second animations ##########################
 def update_second_animation(name)
   animation = root.send(name) 
   animation.key_frames.clear
@@ -90,6 +109,7 @@ def update_second_animation(name)
   end
 end
 
+# Start the clock with "now" time #######################################
 def run
   time = DateTime.Parse(Time.now.to_s);
   root.Run.begin
@@ -98,26 +118,16 @@ def run
   root.Day.begin
 end
 
-def resize(width, height)
-  return if width == 0 || height == 0
-  width = [width, root.Watch.width].min
-  height = [height, root.Watch.height].min
-  scalex = width / root.Watch.width
-  scaley = height / root.Watch.height
-  scale = [scalex, scaley].min
-  root.PageScale.ScaleX = scale
-  root.PageScale.ScaleY = scale
-  root.PageTranslation.x = (width - root.Watch.width * scale) / 2
-  root.PageTranslation.y = (height - root.Watch.height * scale) / 2
-end
-
 @about_shown = false
 @day = true
 @top_button_pressed = false
 @bottom_button_pressed = false
 @chronograph_state = 0 # 0=stopped, 1=running, 2=paused
 
+#root.width = HtmlPage.window.eval('screen.width').to_i
+#root.height = HtmlPage.window.eval('screen.height').to_i
 resize(content.actual_width, content.actual_height)
+
 update_second_animation("SecondAnimation")
 update_second_animation("ChronographSecondAnimation")
 run

@@ -4,14 +4,102 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>TryRuby: <%= controller.action_name %></title>
+  <title>TryIronRuby</title>
+
   <%= stylesheet_link_tag 'scaffold' %>
-  <%= silverlight_include_tag :defaults %>
+  <style type="text/css">
+    body {
+      padding: 0px; margin: 50px; background-color: #222;
+    }
+    #code, #result, #prompt {
+      border: 0px;
+      font-size: 16px;
+      line-height: 20px;
+      font-family: "Courier New";
+      background-color: black;
+      color: #eee;
+    }
+    #code {
+      width: 500px;
+    }
+    #run {
+      display: none;
+    }
+    #run_form {
+      display: inline;
+      color: white;
+    }
+    #prompt {
+      color: yellow;
+    }
+    #console {
+      padding: 15px;
+      background-color: black;
+      height: 250px;
+      overflow: auto;
+      border: 10px solid #444;
+    }
+    #tutorial {
+      background-color: #444;
+      color: white;
+      padding: 10px;
+      font-size: 15px;
+    }
+    #tutorial h2 {
+      margin: 0px; padding: 0px;
+      border-bottom: 2px solid #666;
+      border-top: 2px solid #666;
+      background-color: #555;
+      padding: 5px;
+    }
+    #instructions {
+      padding: 10px;
+      font-family: "Courier New"
+    }
+    .warning {
+      color: white;
+      background-color: #660000;
+      padding: 10px 15px;
+      border-left: 10px solid #444;
+      border-right: 10px solid #444;
+    }
+    h1 {
+      background-color: #444;
+      color: white;
+      padding: 20px 10px;
+      margin: 0px;
+    }
+  </style>
+
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'scrolling' %>
+
+  <!-- TODO: remove this when I can hook HTML keyboard events properly -->
+  <script type="text/javascript">
+    function submitenter(myField, e) {
+      var keycode;
+      if(window.event) {
+        keycode = window.event.keyCode;
+      } else if(e) {
+        keycode = e.which;
+      } else {
+        return true;
+      }
+
+      if(keycode == 13) {
+        document.getElementById('run').click();
+        return false;
+      } else {
+        return true;
+      }
+    }
+  </script>
+
+  <%= silverlight_include_tag :defaults %>
 </head>
 <body>
 
-<%= yield  %>
+  <%= yield  %>
 
 </body>
 </html>

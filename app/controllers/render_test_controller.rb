@@ -1,5 +1,4 @@
 class RenderTestController < ApplicationController
-  layout "posts"
   
   def ruby_action
     
