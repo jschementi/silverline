@@ -15,7 +15,9 @@ module Silverline::Essential::Generator
   # List of files/directories to watch for modification.
   # Triggers generation of the Silverlight package (XAP)
   def self.register
+    create_directories
     watcher = FileSystemWatcher.new
+
     watcher.addDirectory CLIENT_ROOT
     watcher.addDirectory PLUGIN_CLIENT
     watcher.addDirectory "#{PLUGIN_ROOT}/public"
@@ -50,5 +52,10 @@ module Silverline::Essential::Generator
     Xap.new(XAP_FILE, TMP_CLIENT).generate
     
     FileUtils.rm_r TMP_CLIENT
+  end
+
+  def self.create_directories
+    FileUtils.mkdir_p TMP_CLIENT
+    FileUtils.mkdir_p CLIENT_ROOT
   end
 end
