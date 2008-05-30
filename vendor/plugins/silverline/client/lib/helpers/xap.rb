@@ -7,7 +7,9 @@ module XAP
     if relative_path_or_uri.class == String || relative_path_or_uri.class == ClrString
       get_file_contents(Uri.new(normalize_path(relative_path_or_uri), UriKind.relative))
     elsif relative_path_or_uri.class == Uri
-      sr = StreamReader.new(get_file(relative_path_or_uri))
+      file = get_file(relative_path_or_uri)
+      return nil if file.nil?
+      sr = StreamReader.new(file)
       result = sr.read_to_end
       sr.close()
       return result
@@ -19,7 +21,7 @@ module XAP
       get_file(Uri.new(normalize_path(relative_path_or_uri), UriKind.relative))
     elsif relative_path_or_uri.class == Uri
       sri = Application.get_resource_stream(relative_path_or_uri)
-      raise Exception.new("#{relative_path_or_uri.to_string.to_s} does not exist") if sri.nil?
+      return nil if sri.nil?
       sri.stream
     end
   end

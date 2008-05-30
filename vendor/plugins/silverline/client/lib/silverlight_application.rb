@@ -4,6 +4,7 @@ require 'lib/rails'
 
 include System::Windows
 include System::Windows::Browser
+include System::Windows::Interop
 
 class SilverlightApplication
   include Downloader
@@ -46,14 +47,28 @@ class SilverlightApplication
     partial = split_url.join "/"
 
     path = params[:rb_to_run].to_s.split("/")[0..-2].join("/") unless params[:rb_to_run].nil?
-    filename = "#{path}/#{partial}.html.erb"
-    begin
-      XAP.get_file(filename)
-    rescue
-      filename = "views/#{partial}.html.erb"
+    ["html.erb", "xaml"].each do |ext|
+      ["#{path}/#{partial}", "views/#{partial}"].each do |search_path|
+        filename = "#{search_path}.#{ext}"
+        next unless XAP.get_file(filename)
+        send("render_#{ext.split(".").join("_")}", filename, options)
+        return
+      end
     end
-    
+    raise Exception.new("#{partial} partial not found")
+  end
+
+private
+
+  def render_html_erb(filename, options)
     rhtml = ERB.new XAP.get_file_contents(filename)
-    document.send(options[:update])[:innerHTML] = rhtml.result(binding)
+    document.send(options[:update]).innerHTML = rhtml.result(binding)
+  end
+
+  def render_xaml(filename, options)
+    type_str = options[:properties].nil? ? nil : options[:properties][:type]
+    type = (type_str.nil? ? UserControl : Inflection.constantize(type_str)).new
+    Application.load_component(type, Uri.new(filename, UriKind.Relative))
+    Application.current.root_visual = type
   end
 end

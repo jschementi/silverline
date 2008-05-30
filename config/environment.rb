@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-  config.plugins = [:'footnotes-edge', :in_place_editing, :acts_as_list, :silverline]
+  config.plugins = [:in_place_editing, :acts_as_list, :silverline]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
@@ -39,7 +39,7 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_SilverlightOnRails_session',
-    :secret      => 'a54b684dc095ea3c1bd8d21303e31eb563a22d2aefaaa3ba98b31c6873545c2b27631007ff2eba2a162175b61ca3cd04f46542509cfc066d9c02a3e1cf768ffc'
+    :secret      => 'fe1da2e55b2b1eb14bfa681bacd1162212baca936cc6587dc9bb1cf2273d38e6859bb703d78b065e031d68f2a6115c7e0f283d683e61ed969685992edf22de1b'
   }
 
   # Use the database for sessions instead of the cookie-based default,

@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Ruby on Rails: Welcome aboard</title>
+    <title>Silverline: Ruby on the client</title>
     <style type="text/css" media="screen">
     body {
         margin: 0;
@@ -192,13 +192,35 @@
             </div>
 
             <div id="getting-started">
+              <h1>Using the plugin</h1>
+              <p>
+                Currently the plugin ships with a sample application wrapped
+                around it (demos below). To use the plugin on your own, just
+                copy the vendor/plugins/silverline directory to your own
+                application.
+              </p>
+              <p>
+                Note: you will need two things installed:
+              </p>
+              <ul>
+                <li><p><a
+                  href="http://www.jhorman.org/FileSystemWatcher/index.html">FileSystemWatcher</a></p></li>
+                <li><p>gem install rubyzip | <a
+                  href="http://rubyzip.sourceforge.net/">sourceforge</a></p></li>
+              </ul>
+
                 <h1>Demos</h1>
                 <h2>Making an appearance @ RailsConf
                 <ol>
                     <li>
-                        <h2><a href="/tryruby/basic">TryRuby basic</a></h2>
+                        <h2><a href="/tryruby">TryRuby basic</a></h2>
                         <p>Ruby console in the browser, with a tutorial
                             to follow along with</p>
+                    </li>
+                    
+                    <li>
+                        <h2><a href="/watch">Watch</a></h2>
+                        <p>Shows off vector graphics rendering of a ticking watch</p>
                     </li>
 
                     <li>
@@ -213,12 +235,20 @@
                 <ol>
                     <li>
                         <h2><a href="/posts">render :partial => "foo.rb"</a></h2>
-                        <p>Rendering simple ruby partials</p>
+                        <p>Scaffold on model, using Ruby. Rendering a simple
+                        ruby partial which displays to HTML.</p>
                     </li>
 
                     <li>
-                        <h2><a href="/render_test/clock">render :partial => "clock.xaml"</a></h2>
-                        <p>Simple example of loading XAML as a partial</p>
+                        <h2><a href="/render_test/xaml_partial">render :partial => "clock.xaml"</a></h2>
+                        <p>Simple example of loading XAML as a partial.</p>
+                    </li>
+                    
+                    <li>
+                        <h2><a href="/render_test/ruby_partial">render :partial => "clock.rb"</a></h2>
+                        <p>Simple example of loading a Ruby partial, which
+                        in tern displays a XAML partial, and then the Ruby code
+                        runs against it.</p>
                     </li>
 
                     <li>

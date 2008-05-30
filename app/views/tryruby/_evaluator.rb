@@ -1,6 +1,6 @@
 def compute
   @code = $d.code.value.to_s
-  @result = eval(@code) unless @code.empty?
+  @result = eval(@code, console_binding) unless @code.empty?
 rescue => e
   @result = e.class
 ensure
@@ -10,7 +10,7 @@ end
 
 def show_result
   $d.result.append(tag("span", :id => 'prompt') { "&raquo;&nbsp;" })
-  $d.result.append(@code.empty? ? tag("br") : "#{tag("span"){ @code }}#{tag("div"){ @result.to_s }}")
+  $d.result.append(@code.empty? ? tag("br") : "#{tag("span"){ @code }}#{tag("div"){ @result.inspect }}")
   $d.code.value = ""
 end
 
@@ -40,6 +40,10 @@ def hook_run
     document.loading.html = ''
     HtmlPage.window.eval "moveTo('console', 'code')"
   end
+end
+
+def console_binding
+  binding
 end
 
 $d.code.value = ''

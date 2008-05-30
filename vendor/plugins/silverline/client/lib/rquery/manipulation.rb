@@ -8,15 +8,18 @@ module RQuery
       end
       def html=(value)
         self.set_property(:innerHTML, value)
+        self
       end
     end
   
     module InsertingInside
       def append(content)
         self.html = "#{self.html}#{content}"
+        self
       end
       def prepend(content)
         self.html = "#{content}#{self.html}"
+        self
       end
     end
   
