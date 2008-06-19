@@ -6,6 +6,8 @@ class Tutor::ClassAssignmentController < Tutor::DefaultController
   Tutor.enable :with => :all, :resume => :assistment
   include Tutor
 
+  client :begin
+
   def list
     @assistments = Assistment.find(:all)
   end

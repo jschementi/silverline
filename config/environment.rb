@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-  config.plugins = [:in_place_editing, :acts_as_list, :silverline]
+  config.plugins = [:rspec, :"rspec-rails", :in_place_editing, :acts_as_list, :silverline]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
