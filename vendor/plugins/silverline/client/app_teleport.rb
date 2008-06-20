@@ -21,20 +21,16 @@ class Teleport < SilverlightApplication
   private
   
     def find_client_links
-      # TODO: FIX THIS HACK! it should be l['title'] in the block!
-      titles = @client_links.collect { |l| l.values.last }
-      t = document.get_elements_by_tag_name("a").first.title.to_s
-      document.get_elements_by_tag_name("a").select {
+      titles = @client_links.collect { |l| l["title"] }
+      $d.tags(:a).select {
         |a| titles.include?(a.title.to_s) && a.rel.to_s == "silverlight"
       }
     end
   
     def hook_client_link(a)
-      # TODO: FIX THIS HACK! it should be l['title'] == a.title.to_s in the block!
-      link = @client_links.select{ |l| l.values.last == a.title.to_s }.first
+      link = @client_links.select{ |l| l['title'] == a.title.to_s }.first
       unless link.nil?
-        # TODO: FIX THIS HACK! it should be link['options'] in do_action
-        a.onclick { |s, e| do_action(link.values.first) }
+        a.onclick { |s, e| do_action(link['options']) }
         a.remove_attribute("title")
       end
     end
@@ -45,8 +41,7 @@ class Teleport < SilverlightApplication
       controller = ClientController
       c = controller.new
       c.host = self
-      # TODO: FIX THIS HACK! it should be c.send options["url"]["action"]
-      c.send(options.values.first.values.first)
+      c.send options['url']['action']
     end
 end
 

@@ -25,7 +25,7 @@ module Wpf
 
     # Load a XAML file on a class
     # Load self.name if we weren't given a name option. If that doesn't exist, default to "app".
-    # Default to UserControl as the type option, unless 
+    # Default to UserControl as the type option, unless given.
     def use_xaml(options = {})
       if !options.has_key?(:name) || options[:name].nil?
         name = Inflection.underscore(self.name)
