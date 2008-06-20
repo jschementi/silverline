@@ -23,10 +23,12 @@ made for the test application.
 
    1. Ruby 1.8.6
    2. Silverlight 2 (Beta 2): Windows or Mac
+      Note: Silverline has the developer version of the Silverlight runtime in 
+      vendor/plugins/silveline/install
    3. FileSystemWatcher (http://www.jhorman.org/FileSystemWatcher/index.html)
    4. rubyzip: gem install rubyzip (http://rubyzip.sourceforge.net/)
 
-(2-4 will be packaged in the plugin shortly)
+(3-4 will be packaged in the plugin shortly)
 
 You can find more information on Lighthouse: http://silverline.lighthouseapp.com/.
 
