@@ -18,6 +18,10 @@ class HtmlDocument
   def get_elements_by_tag_name(name)
     orig_get_elements_by_tag_name(name.to_s.to_clr_string)
   end
+  
+  def tags(name)
+    get_elements_by_tag_name name
+  end
 end
 
 class HtmlElementCollection

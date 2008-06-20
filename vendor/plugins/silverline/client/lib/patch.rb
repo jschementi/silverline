@@ -40,6 +40,8 @@ class DateTime
   end
 end
 
+# TODO: this is part of ActiveSupport, and shouldn't be in the ruby patch file. 
+# Move this out to the Rails folder, but load it early on
 module Inflection
   def self.underscore(camel_cased_word)
     camel_cased_word.to_s.gsub(/::/, '/').
