@@ -3,9 +3,7 @@ module Silverline::Visualize::Helpers::Templates
   include Configuration
   include Formats
   
-  # TODO: for now, actions bypass Silverlight altogether
-  # Should this be different? Like, should someone be able to 
-  # render a Ruby/XAML file without a RHTML file first?
+  # TODO: Ruby/XAML files should be supported actions
   def __ag_render_a_action(key, template, options, other, &block)
     _ag_render_without_silverlight(key, template, options, other, &block)
   end
@@ -15,7 +13,7 @@ module Silverline::Visualize::Helpers::Templates
   
     # Render first type found
     # TODO: Make this work if the full filename is supplied
-    [:ruby, :xaml].each do |type|
+    [:ruby, :xaml, :xaml_erb].each do |type|
       if File.exists? send("___ag_#{type}_filename", config)
         return send("___ag_render_#{type}_partial", config[:filename], options, other)
       end

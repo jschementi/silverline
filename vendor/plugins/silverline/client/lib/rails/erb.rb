@@ -405,9 +405,7 @@ class ERB
     Scanner.regist_scanner(SimpleScanner, nil, false)
 
     begin
-      # BUG: IronRuby requires StrinScanner automatically, 
-      # but fails to require it by name.
-      #require 'strscan'
+      require 'strscan'
       class SimpleScanner2 < Scanner # :nodoc:
         def scan
           stag_reg = /(.*?)(<%%|<%=|<%#|<%|\n|\z)/

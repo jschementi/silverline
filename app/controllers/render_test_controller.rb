@@ -15,5 +15,13 @@ class RenderTestController < ApplicationController
   def xaml_partial
     render :action => 'clock_xaml'
   end
+  
+  def xaml_erb_action
+  
+  end
+  
+  def xaml_erb_partial
+    render :action => 'clock_xaml_erb'
+  end
 
 end

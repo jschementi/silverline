@@ -42,13 +42,17 @@ class SilverlightApplication
   end
   
   def render(options = {})
-    split_url = options[:partial].split "/"
-    split_url[-1] = "_#{split_url[-1]}"
+    split_url = options[:partial].to_s.split "/"
+    split_url[-1] = "_#{split_url[-1]}" if split_url[-1][0..0] != "_"
     partial = split_url.join "/"
-
+    
     path = params[:rb_to_run].to_s.split("/")[0..-2].join("/") unless params[:rb_to_run].nil?
-    ["html.erb", "xaml"].each do |ext|
-      ["#{path}/#{partial}", "views/#{partial}"].each do |search_path|
+    search_paths = []
+    search_paths << "#{path}/#{partial}" unless path.nil?
+    search_paths << (partial.clone[0..5] == "views/" ? partial : "views/#{partial}")
+    
+    ["html.erb", "xaml", "xaml.erb"].each do |ext|
+      search_paths.each do |search_path|
         filename = "#{search_path}.#{ext}"
         next unless XAP.get_file(filename)
         send("render_#{ext.split(".").join("_")}", filename, options)
@@ -66,9 +70,28 @@ private
   end
 
   def render_xaml(filename, options)
-    type_str = options[:properties].nil? ? nil : options[:properties][:type]
-    type = (type_str.nil? ? UserControl : Inflection.constantize(type_str)).new
-    Application.load_component(type, Uri.new(filename, UriKind.Relative))
-    Application.current.root_visual = type
+    element = get_type(options).new
+    
+    Application.load_component(element, Uri.new(filename, UriKind.Relative))
+    Application.current.root_visual = element
+  end 
+  
+  def render_xaml_erb(filename, options)
+    rxaml = XAP.get_file_contents(filename).to_s
+    rxaml = rxaml.gsub /x:Class="#{get_type(options).to_s.gsub("::", ".")}"/, ""
+    erb = ERB.new(rxaml, nil, "%-<>").result(binding)
+    Application.current.root_visual = Markup::XamlReader.Load erb
   end
+    
+  def get_type(options)
+    type = options[:properties].nil? ? nil : options[:properties][:type]
+    if type.nil?
+      UserControl
+    elsif type.kind_of?(String)
+      Inflection.constantize(type)
+    else
+      type
+    end
+  end
+
 end
