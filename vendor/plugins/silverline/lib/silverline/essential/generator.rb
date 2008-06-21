@@ -1,6 +1,7 @@
 # NOTE: requires filesystemwatcher to be installed
 # http://www.jhorman.org/FileSystemWatcher/index.html
 require "filesystemwatcher"
+
 require 'silverline/essential/xap'
 
 def logger
@@ -10,8 +11,7 @@ end
 # Generates the XAP on modification of watched files
 module Silverline::Essential::Generator
   include Silverline
-  Xap = Silverline::Essential::XAPChiron
-  
+
   # List of files/directories to watch for modification.
   # Triggers generation of the Silverlight package (XAP)
   def self.register
@@ -49,7 +49,7 @@ module Silverline::Essential::Generator
     
     # Lastly, client root wins
     FileUtils.cp_r "#{CLIENT_ROOT}/.", TMP_CLIENT
-    Xap.new(XAP_FILE, TMP_CLIENT).generate
+    Silverline::Essential::XAP.new(XAP_FILE, TMP_CLIENT).generate
     
     FileUtils.rm_r TMP_CLIENT
   end
