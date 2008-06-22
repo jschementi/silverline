@@ -47,7 +47,7 @@ module Silverline::Essential::Html
     end
 
     def public_xap_file
-      "/#{Silverline::XAP_FILE.split("/").last}"
+      "/#{Silverline.const_get(:XAP_FILE).split("/").last}"
     end
     
     def jsonify(o)

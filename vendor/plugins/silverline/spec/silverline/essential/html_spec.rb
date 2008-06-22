@@ -41,7 +41,12 @@ describe "Private functionality of essential HTML" do
     result = "foo=hi, bar=bye, http_host=baz"
   end
   
-  it "should know the XAP file location"
+  it "should know the XAP file location" do
+    Silverline.should_receive(:const_get).with(:XAP_FILE).and_return "path/to/foo.xap"
+    @html.send(:public_xap_file).should == "/foo.xap"
+  end
+  
   it "should know how to put JSON in initParams"
+  
   it "should know how to render a template"
 end
