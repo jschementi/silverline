@@ -4,7 +4,3 @@ $LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
 
 require 'spec'
 require 'spec/mocks'
-
-require 'rubygems'
-require 'ruby-debug'
-#Debugger.start
