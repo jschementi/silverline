@@ -36,8 +36,8 @@ module Silverline::Essential::Html
   
     def http_host
       request = session.cgi.instance_variable_get(:"@request")
-      return session.cgi.env_table['HTTP_HOST'] if request.nil?
-      request.params["HTTP_HOST"]
+      return session.cgi.env_table['HTTP_HOST'] if request.nil? # for WEBrick
+      request.params["HTTP_HOST"] # Mongrel
     end
 
     def generate_init_params(options)
