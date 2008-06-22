@@ -1,6 +1,6 @@
 module Silverline::Essential::Html
   
-  def silverlight_include_tag(options)
+  def silverlight_include_tag(options = :defaults)
     templatify("head.html.erb", binding)
   end
   

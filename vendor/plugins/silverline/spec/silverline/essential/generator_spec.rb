@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../../spec_nonrails.rb'
 
-Silverline.instance_eval{remove_const :Essential} if defined?(Silveline::Essential)
+Silverline.instance_eval{remove_const :Essential} if defined?(Silverline::Essential)
 Silverline::Essential = Module.new
 
-Silverline::Essential.instance_eval{remove_const :Xap} if defined?(Silveline::Essential::Xap)
+Silverline::Essential.instance_eval{remove_const :Xap} if defined?(Silverline::Essential::Xap)
 Silverline::Essential::Xap = :chiron
 
 load 'silverline/essential/generator.rb'
@@ -11,7 +11,7 @@ load 'silverline/essential/generator.rb'
 describe Silverline::Essential::Generator do
   
   before do
-    Silverline::Essential.instance_eval{remove_const :Generator}
+    Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
     Silverline::Essential::Generator = Module.new
   end
   

@@ -7,4 +7,4 @@ require 'spec/mocks'
 
 require 'rubygems'
 require 'ruby-debug'
-Debugger.start
+#Debugger.start

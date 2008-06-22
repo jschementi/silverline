@@ -15,6 +15,8 @@ end
 describe Silverline::Essential do  
   
   before do
+    Object.instance_eval{remove_const :FileSystemWatcher} if defined?(::FileSystemWatcher)
+    ::FileSystemWatcher = mock("FileSystemWatcher", :null_object => true)
     require 'silverline/essential'
   end
   
@@ -31,7 +33,7 @@ describe Silverline::Essential do
   end
   
   it "should tell the generator to register itself" do
-    Silverline::Essential.instance_eval{remove_const :Generator}
+    Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
     gen = Silverline::Essential::Generator = mock("Generator")
     gen.should_receive(:register)
     load 'silverline/essential.rb'

@@ -1,6 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Silverline do
+  before do 
+    Object.instance_eval{remove_const :FileSystemWatcher} if defined?(::FileSystemWatcher)
+    ::FileSystemWatcher = mock("FileSystemWatcher", :null_object => true)
+  end
+  
   it "should define path to Rails views" do
     Silverline::RAILS_VIEWS.should be_relative_to("app/views")
   end
