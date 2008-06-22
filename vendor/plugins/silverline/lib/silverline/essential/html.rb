@@ -56,7 +56,6 @@ private
 
   def templatify(path, b)
     body = File.open("#{RAILS_ROOT}/vendor/plugins/silverline/templates/#{path}"){|f| f.read}
-    puts body.inspect
     ::ERB.new(body).result(b)
   end
 
