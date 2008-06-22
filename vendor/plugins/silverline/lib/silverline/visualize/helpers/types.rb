@@ -1,6 +1,8 @@
+require 'silverline/visualize/helpers/templates'
+
 # Render based on the type passed to render's options parameter
 module Silverline::Visualize::Helpers::Types
-  include Templates
+  include Silverline::Visualize::Helpers::Templates
   
   def _ag_render_for_hash(options, other, &block)
     [:action, :partial, :inline, :template].each do |key|        

@@ -1,5 +1,9 @@
 module Silverline::Essential
   
+  # make sure to undefine Xap if it already exists; this file should always
+  # have first crack at defining it
+  instance_eval { remove_const :Xap } if defined?(Xap)
+  
   # What should generate the Xap?
   # 
   #   Uses rubyzip to generate the XAP. This is the default behavior, so

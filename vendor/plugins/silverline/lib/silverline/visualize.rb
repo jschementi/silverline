@@ -2,6 +2,7 @@ module Silverline::Visualize
   # Nothing on purpose =)
 end
 
+require 'silverline/visualize/helpers'
 require 'silverline/visualize/rendering'
 
 ActionController::Base.class_eval do 

@@ -1,12 +1,11 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
 ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'spec'
-
+require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
 require 'spec/rails'
+require File.dirname(__FILE__) + '/matchers/relative_rails_root.rb'
 
 Spec::Runner.configure do |config|
+  config.include(CustomPathMatchers)
+
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb

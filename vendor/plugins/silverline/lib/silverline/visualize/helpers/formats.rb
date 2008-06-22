@@ -2,10 +2,10 @@
 module Silverline::Visualize::Helpers::Formats
   
   def ___ag_render_ruby_partial(filename, options, other)
-    return silverlight_object options.merge({
+    return silverlight_object(options.merge({
       :start      => "app_render_rb",
       :rb_to_run  => "views/#{@__cpath}/#{filename}"
-    })
+    }))
   end
   
   def ___ag_ruby_filename(config)
@@ -20,7 +20,7 @@ module Silverline::Visualize::Helpers::Formats
     }
     xaml_type = options[:properties].delete(:type)
     defaults[:xaml_type] = xaml_type unless xaml_type.nil?
-    return silverlight_object options.merge(defaults)
+    return silverlight_object(options.merge(defaults))
   end
   
   def ___ag_xaml_filename(config)

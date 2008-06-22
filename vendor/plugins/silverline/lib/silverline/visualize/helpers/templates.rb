@@ -1,7 +1,10 @@
+require 'silverline/visualize/helpers/configuration'
+require 'silverline/visualize/helpers/formats'
+
 # Render based on the template-key given in render(options)
 module Silverline::Visualize::Helpers::Templates
-  include Configuration
-  include Formats
+  include Silverline::Visualize::Helpers::Configuration
+  include Silverline::Visualize::Helpers::Formats
   
   # TODO: Ruby/XAML files should be supported actions
   def __ag_render_a_action(key, template, options, other, &block)

@@ -24,6 +24,6 @@ module Silverline::Visualize::Rendering
     end
     
     # See visualize/helpers for what gets included here
-    include Helpers
+    include ::Silverline::Visualize::Helpers
     
 end

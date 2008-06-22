@@ -1,7 +1,7 @@
-require 'patch/ruby'
-
 module Silverline
   RAILS_VIEWS = "#{RAILS_ROOT}/app/views"
+  RAILS_CTRLRS = "#{RAILS_ROOT}/app/controllers"
+  RAILS_MODELS = "#{RAILS_ROOT}/app/models"
   XAP_FILE = "#{RAILS_ROOT}/public/client.xap"
   CLIENT_ROOT = "#{RAILS_ROOT}/lib/client"
   TMP_CLIENT = "#{RAILS_ROOT}/tmp/client"
@@ -14,7 +14,3 @@ module Silverline
     RB = "rb"
   end
 end
-
-require 'silverline/essential'
-require 'silverline/visualize'
-require 'silverline/teleport'
