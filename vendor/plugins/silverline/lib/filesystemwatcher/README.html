@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="AUTHOR" content="Jason Horman">
+<title>Torrent (Workflow)</title>
+<style>
+	BODY { font-family: Tahoma; font-size: 9pt; }
+.example     { background-color: #00FFCC; border-style: solid; border-width: 1; padding: 3 }
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<p align="center"><b><font size="3">FileSystemWatcher<br>
+<br>
+</font></b><a href="FileSystemWatcher.1.0.0.zip">current release 1.0.0</a></p>
+<p align="left"><b>Overview</b></p>
+<p align="left">Simple library for watching events occurring on a file system.
+The events watched are CREATED, MODIFIED and DELETED. This solution is (should
+be) platform independent. For example, you might use this inside of your server
+to monitor changes in your config files.</p>
+<p align="left"><b>Example</b></p>
+
+<div class="example" width="85%">
+require &quot;filesystemwatcher&quot;
+<p>watcher = FileSystemWatcher.new()<br>
+watcher.addDirectory(&quot;/inetpub/ftproot&quot;, &quot;*.xml&quot;)<br>
+watcher.sleepTime = 10<br>
+watcher.start { |status,file|<br>
+&nbsp;&nbsp;&nbsp; if(status == FileSystemWatcher::CREATED) then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puts &quot;created: #{file}&quot;<br>
+&nbsp;&nbsp;&nbsp; elsif(status == FileSystemWatcher::MODIFIED) then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puts &quot;modified: #{file}&quot;<br>
+&nbsp;&nbsp;&nbsp; elsif(status == FileSystemWatcher::DELETED then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puts &quot;deleted: #{file}&quot;<br>
+&nbsp;&nbsp;&nbsp; end<br>
+}
+</div>
+
+<p><b>Installation</b></p>
+<p>Run <b>'ruby install.rb'</b>. This will place the libraries in your ruby/lib/site_ruby
+directory. There are 2 files, filesystemwatcher.rb and servicestate.rb.</p>
+<p><b>General Usage</b></p>
+<ol>
+  <li><b>Create the watcher<br>
+    <br>
+    </b>watcher = FileSystemWatcher.new()<b><br>
+    <br>
+    </b>
+  </li>
+  <li><b>Tell the watcher what to watch<br>
+    </b><br>
+    watcher.addDirectory(dir[, expression])<br>
+    watcher.addFile(fileName)<br>
+    <br>
+    You can watch individual files or directories. If you watch a directory you
+    can specify an ruby Dir[] expression to search that directory for. The
+    default expression is &quot;**/*&quot; which means any file recursively.<br>
+    <br>
+  </li>
+  <li><b>Optionally specify the sleep time<br>
+    </b>The watcher uses a single thread to search for changes. This sets that
+    threads sleep time between iterations.<br>
+    <br>
+    watcher.sleepTime = 10<br>
+    <br>
+  </li>
+  <li><b>Optionally specify the threads priority</b><br>
+    <br>
+    watcher.priority = 2<br>
+    <br>
+  </li>
+  <li><b>Optionally specify to use MD5 hashs of watched files<br>
+    </b>Only use this if you know your files are small. This option will
+    generate a hash of each file and only alert you of modifications if the
+    files hash value changes.<br>
+    <br>
+    watcher.useMD5 = true<br>
+    <br>
+  </li>
+  <li><b>Start Watching<br>
+    </b>Specify the block to use when a file is created modified or deleted, as
+    shown in the example at the top.<br>
+    <br>
+  </li>
+  <li><b>Stop Watching<br>
+    <br>
+    </b>watcher.stop()<br>
+    watcher.stopWhen { block }<br>
+    <br>
+    The stopWhen method lets you specify a block, and when that block evaluates
+    to true the watcher will stop. This is provided by the servicestate mixin.
+  </li>
+</ol>
+<p><b>Notes</b></p>
+<p>If you know that your directory contains many many files consider creating
+multiple FileSystemWatcher(s). Each watcher only uses 1 thread so if the number
+of directories is large is could slow down notifications.</p>
+<p>Also, if you know your files are large be careful with the useMD5 option
+since it must read the contents of each file to generate a hash.</p>
+</body>
+
+</html>

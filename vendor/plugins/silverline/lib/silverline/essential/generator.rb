@@ -1,6 +1,6 @@
 # NOTE: requires filesystemwatcher to be installed
 # http://www.jhorman.org/FileSystemWatcher/index.html
-require "filesystemwatcher"
+require "filesystemwatcher/filesystemwatcher"
 
 require 'fileutils'
 require 'silverline/essential/xap'
