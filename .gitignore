@@ -1,6 +1,10 @@
-/log
-/db/*.sqlite3
-/tmp
 .DS_Store
-/db/schema.rb
-/public/client.xap
+tmp
+log
+vendor/gems
+db/*.sqlite3
+data.dump
+db/data.yml
+db/schema.rb
+config/database.yml
+public/client.xap
