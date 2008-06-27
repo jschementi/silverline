@@ -18,9 +18,8 @@ module Silverline::Essential::Generator
     create_directories
     @watcher = FileSystemWatcher.new
 
-    [ Silverline::CLIENT_ROOT, Silverline::PLUGIN_CLIENT, "#{Silverline::PLUGIN_ROOT}/public", 
-      "#{RAILS_ROOT}/public/ironruby"].each do |dir|
-        @watcher.addDirectory dir
+    [Silverline::CLIENT_ROOT, Silverline::PLUGIN_CLIENT].each do |dir|
+      @watcher.addDirectory dir
     end
 
     # TODO: watch all client controllers, as well as all views
@@ -41,6 +40,7 @@ module Silverline::Essential::Generator
     # First copy the plugin's client folder to tmp folder
     FileUtils.cp_r "#{Silverline::PLUGIN_CLIENT}/.", Silverline::TMP_CLIENT
     
+    # TODO: should the controller/views be handled by Visualize/Teleport?
     # TODO: copy all controllers, views, and models to tmp folder
     FileUtils.mkdir_p "#{Silverline::TMP_CLIENT}/controllers"
     FileUtils.mkdir_p "#{Silverline::TMP_CLIENT}/views"

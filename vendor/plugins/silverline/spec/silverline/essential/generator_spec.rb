@@ -34,9 +34,8 @@ describe Silverline::Essential::Generator do
     
     @watcher.should_receive(:addDirectory).with(Silverline::CLIENT_ROOT)
     @watcher.should_receive(:addDirectory).with(Silverline::PLUGIN_CLIENT)
-    @watcher.should_receive(:addDirectory).with("#{Silverline::PLUGIN_ROOT}/public")
-    @watcher.should_receive(:addDirectory).with("#{RAILS_ROOT}/public/ironruby")
     
+    # TODO: should the visualize/teleport stuff deal with defining what to watch?
     #@watcher.should_receive(:addDirectory).with(Silverline::RAILS_CTRLRS)
     @watcher.stub!(:addFile)
     @watcher.should_receive(:addDirectory).with(Silverline::RAILS_VIEWS)
@@ -75,6 +74,7 @@ describe Silverline::Essential::Generator do
     
     FileUtils.should_receive(:cp_r).with("#{Silverline::PLUGIN_CLIENT}/.", Silverline::TMP_CLIENT).ordered
     
+    # TODO: should Visualize/Essential be defining these folders to watch
     FileUtils.should_receive(:mkdir_p).with("#{Silverline::TMP_CLIENT}/controllers").ordered
     FileUtils.should_receive(:mkdir_p).with("#{Silverline::TMP_CLIENT}/views").ordered
     FileUtils.should_receive(:cp).with('app/controllers/client_controller.rb', "#{Silverline::TMP_CLIENT}/controllers").ordered
