@@ -10,6 +10,7 @@ integrated with the rest of the framework.
 
 = Gimme!
 
+http://github.com/jschementi/silverline
 git clone git://github.com/jschementi/silverline.git
 
 This repository holds a Rails test application, Rails 2.0.2 (in vendor/rails), 
@@ -19,15 +20,9 @@ If you're just interested in the plugin, you can find it here.
 Soon, this repository will only be for the plugin. Another repository will be
 made for the test application.
 
-== You'll also need:
-
-   1. Ruby 1.8.6
-   2. Silverlight 2 (Beta 2): Windows or Mac
-      Note: Silverline has the developer version of the Silverlight runtime in 
+You'll also need: Silverlight 2 (Beta 2): Windows or Mac
+Note: Silverline has the developer version of the Silverlight runtime in 
       vendor/plugins/silveline/install
-   3. rubyzip: gem install rubyzip (http://rubyzip.sourceforge.net/)
-
-(rubyzip will be packaged in the plugin shortly)
 
 You can find more information on Lighthouse: http://silverline.lighthouseapp.com/.
 
