@@ -11,7 +11,7 @@
     body {
       padding: 0px; margin: 50px; background-color: #222;
     }
-    #code, #result, #prompt {
+    #code, #result, .prompt {
       border: 0px;
       font-size: 16px;
       line-height: 20px;
@@ -20,8 +20,12 @@
       color: #eee;
     }
     #code {
-      width: 500px;
+      width: 90%;
+      height: 20px;
+      position: relative;
+      left: -1px; top: -1px;
     }
+    .active {}
     #run {
       display: none;
     }
@@ -29,8 +33,9 @@
       display: inline;
       color: white;
     }
-    #prompt {
+    .prompt {
       color: yellow;
+      float: left; 
     }
     #console {
       padding: 15px;
@@ -73,27 +78,6 @@
 
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'scrolling' %>
-
-  <!-- TODO: remove this when I can hook HTML keyboard events properly -->
-  <script type="text/javascript">
-    function submitenter(myField, e) {
-      var keycode;
-      if(window.event) {
-        keycode = window.event.keyCode;
-      } else if(e) {
-        keycode = e.which;
-      } else {
-        return true;
-      }
-
-      if(keycode == 13) {
-        document.getElementById('run').click();
-        return false;
-      } else {
-        return true;
-      }
-    }
-  </script>
 
   <%= silverlight_include_tag :defaults %>
 </head>

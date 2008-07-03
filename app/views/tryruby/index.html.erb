@@ -7,9 +7,13 @@
   though sometimes you will get browser auto-complete once you start typing. =)
 </div>
 
+<div style="display: none">
+    <a href="javascript:void(0)" id="previous" onclick="alert('prev')">Previous Line</a>
+    <a href="javascript:void(0)" id="next" onclick="alert('next)">Next Line</a>
+</div>
 <div id="console">
   <div id="result"></div>
-  <span id="prompt">&raquo;&nbsp;</span><form id="run_form" action="javascript:void(0)"><input type="text" id="code" onkeypress="return submitenter(this, event)" /><input type="submit" id="run" value="Run" /></form>
+  <span id="prompt" class="prompt"></span><form id="run_form" action="javascript:void(0)"><textarea type="text" rows="1" id="code"></textarea><input type="submit" id="run" value="Run" /></form> <!-- return submitenter(this, event) -->
   <span id="loading"></span>
 </div>
 <div id="tutorial">

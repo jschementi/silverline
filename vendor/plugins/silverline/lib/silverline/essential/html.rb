@@ -8,7 +8,7 @@ module Silverline::Essential::Html
   def silverlight_object(options = {})
     defaults = {
       :start => "app",
-      :debug => false,
+      :debug => true,
       :reportErrors => "errorLocation",
       :properties => {
         :width => 1,
