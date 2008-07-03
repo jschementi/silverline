@@ -1,10 +1,9 @@
 <%= render :partial => "evaluator" %>
 
-<h1>Try IronRuby: basic</h1>
-<div class="warning">
-  <b>Very early prototype</b>: Multi-line expressions do not work, and the error messages are only 
-  limited to the exception name. Also, the up-arrow doesn't cycle through previous commands, 
-  though sometimes you will get browser auto-complete once you start typing. =)
+<h1>Try IronRuby</h1>
+<div class="warning" id="warning-id">
+  <a id="warning-hide" href="javascript:void(0)" onclick="Effect.SlideUp('warning-id', {duration: 0.1})">Hide</a>
+  <b>Very early prototype</b>: Error messages are only limited to the exception name and the up-arrow doesn't cycle through previous commands.
 </div>
 
 <div style="display: none">

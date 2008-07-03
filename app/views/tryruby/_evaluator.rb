@@ -38,7 +38,9 @@ ensure
     reset
   else
     $d.code.style[:height] = "#{$d.code.style[:height].to_s[0..-2].to_i + 20}px"
-    #show_sub_prompt
+    show_prompt
+    show_loaded
+    $d.prompt.html = sub_prompt_html
   end
 end
 
@@ -48,20 +50,31 @@ def remember
 end
 
 def reset
-  @code = @result = @multiline = nil
+  @code = @result = @multiline = @multiline_prompt = nil
 end
 
 def show_result(code, result)
-  code = code.split("\n").collect{|line| line.split(" ").join("&nbsp;")}.join("<br />")
-  $d.result.append(code.empty? ? tag("br") : (tag("span"){ code } + tag("div"){ result.inspect }))
-end
-
-def show_sub_prompt
-  $d.result.append(tag("span", :class => 'prompt') { sub_prompt_html })
+  code = code.split("\n")
+  @line_count = code.size
+  code = code.collect do |line| 
+    tag("div", :class => 'line') do
+      line.gsub(" ", "&nbsp;")
+    end
+  end.join.strip
+  $d.result.append(
+    if code.empty?
+      tag("br") 
+    else 
+      tag("div", :class => "expression"){ code } + tag("div"){ result.inspect }
+    end
+  )
 end
 
 def show_prompt
-  $d.result.append(tag("span", :class => 'prompt') { prompt_html })
+  $d.result.append(tag("div", :class => 'prompt') do 
+    @multiline_prompt ? sub_prompt_html : prompt_html
+  end)
+  @multiline_prompt = true if @multiline
 end
 
 def prompt_html
@@ -82,7 +95,8 @@ def show_defaults
 end
 
 def show_loading
-  $d.loading.html = tag('img', :src => '/images/loadinfo.net.gif', :alt => 'evaluating ...')
+  $d.loading.html = tag('img', 
+    :src => '/images/loadinfo.net.gif', :alt => 'evaluating ...')
 end
 
 def show_loaded
@@ -106,14 +120,19 @@ KEYS = {
 show_defaults
 
 $d.code.onkeypress do |s, a|
-  show_loading
-  if a.character_code.to_i == 13
+  case a.character_code
+  when 13 
+    show_loading
     run_code
     @tutorial.move_on
+    show_loaded
+  when 38
+  
+  when 40
   end
-  show_loaded
+  $d.code.value.strip!
 end
 
 # Demo script
-$d.code.value = "2 + 6"
+$d.code.value = "'Welcome to IronRuby'"
 run_code

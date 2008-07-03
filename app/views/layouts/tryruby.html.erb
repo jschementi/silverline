@@ -4,12 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>TryIronRuby</title>
+  <title>Try IronRuby</title>
 
   <%= stylesheet_link_tag 'scaffold' %>
   <style type="text/css">
     body {
-      padding: 0px; margin: 50px; background-color: #222;
+      padding: 0px; 
+      margin: 50px; 
+      background-color: #222;
     }
     #code, #result, .prompt {
       border: 0px;
@@ -25,17 +27,19 @@
       position: relative;
       left: -1px; top: -1px;
     }
-    .active {}
     #run {
       display: none;
     }
     #run_form {
-      display: inline;
       color: white;
     }
     .prompt {
       color: yellow;
-      float: left; 
+      float: left;
+      clear: left;
+    }
+    .expression {
+      margin-left: 20px;
     }
     #console {
       padding: 15px;
@@ -65,13 +69,27 @@
       color: white;
       background-color: #660000;
       padding: 10px 15px;
+      padding-left: 60px;
       border-left: 10px solid #444;
       border-right: 10px solid #444;
+      border-top: 10px solid #444;
+      position: relative;
+    }
+    #warning-hide {
+      background-color: white;
+      padding: 1px 5px;
+      top: 0px; left: 0px; bottom: 0px;
+      position: absolute;
+      padding-top: 17px;
+    }
+    #warning-hide:hover {
+      background-color: black;
+      color: white;
     }
     h1 {
       background-color: #444;
       color: white;
-      padding: 20px 10px;
+      padding: 20px 10px 10px;
       margin: 0px;
     }
   </style>
