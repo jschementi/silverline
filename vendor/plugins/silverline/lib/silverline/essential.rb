@@ -17,8 +17,10 @@ module Silverline::Essential
 
 end
 
-require 'silverline/essential/generator'
-Silverline::Essential::Generator.register
+if ENV['RAILS_ENV'] != 'production' 
+  require 'silverline/essential/generator'
+  Silverline::Essential::Generator.register 
+end
 
 require 'silverline/essential/html'
 ActionView::Base.class_eval do 

@@ -32,11 +32,19 @@ describe Silverline::Essential do
     ActionView::Base.included_modules.include?(Silverline::Essential::Html)
   end
   
-  it "should tell the generator to register itself" do
+  it "should tell the generator to register itself in development mode" do
+    ENV.stub!(:[]).with('RAILS_ENV').and_return('development')
     Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
     gen = Silverline::Essential::Generator = mock("Generator")
     gen.should_receive(:register)
     load 'silverline/essential.rb'
   end
   
+  it "should not tell the generator to register itself in production mode" do
+    ENV.stub!(:[]).with('RAILS_ENV').and_return('production')
+    Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
+    gen = Silverline::Essential::Generator = mock("Generator")
+    gen.should_not_receive(:register)
+    load 'silverline/essential.rb'
+  end
 end
