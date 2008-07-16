@@ -13,7 +13,6 @@ module ActionView
 end
 
 describe Silverline::Essential do  
-  
   before do
     Object.instance_eval{remove_const :FileSystemWatcher} if defined?(::FileSystemWatcher)
     ::FileSystemWatcher = mock("FileSystemWatcher", :null_object => true)
@@ -32,19 +31,24 @@ describe Silverline::Essential do
     ActionView::Base.included_modules.include?(Silverline::Essential::Html)
   end
   
-  it "should tell the generator to register itself in development mode" do
-    ENV.stub!(:[]).with('RAILS_ENV').and_return('development')
-    Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
-    gen = Silverline::Essential::Generator = mock("Generator")
-    gen.should_receive(:register)
-    load 'silverline/essential.rb'
-  end
-  
-  it "should not tell the generator to register itself in production mode" do
-    ENV.stub!(:[]).with('RAILS_ENV').and_return('production')
-    Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
-    gen = Silverline::Essential::Generator = mock("Generator")
-    gen.should_not_receive(:register)
-    load 'silverline/essential.rb'
+  describe "register the generator" do
+    before :each do
+      Silverline::Essential.instance_eval{remove_const :Generator} if defined?(Silverline::Essential::Generator)
+      @gen = Silverline::Essential::Generator = mock("Generator")
+    end
+    
+    after :each do
+      load 'silverline/essential.rb'
+    end
+    
+    it "should happen in development mode" do
+      ENV.stub!(:[]).with('RAILS_ENV').and_return('development')
+      @gen.should_receive(:register)
+    end
+    
+    it "should not happen in production mode" do
+      ENV.stub!(:[]).with('RAILS_ENV').and_return('production')  
+      @gen.should_not_receive(:register)
+    end
   end
 end
