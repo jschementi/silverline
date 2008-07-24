@@ -1,9 +1,0 @@
-page.replace_html 'problem', :partial => "build/problem/show"
-
-page.select('.problem_list .active').first.className = "name"
-page.select('.problem_list .name').first.className = "main_problem name"
-
-page.replace_html "heading_assistment_name", @problem.name + " (scaffold)"
-
-class_name = if @problem.main? then "main_problem name" else "name" end
-page.select("##{dom_id(@problem)}").first.className = class_name  + " active"

@@ -1,3 +1,0 @@
-module Build::AnswerHelper
-
-end

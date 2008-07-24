@@ -1,4 +1,0 @@
-page.visual_effect :blind_up, dom_id(@assistment), :duration => 0.2
-page.delay(0.2) do
-  page.remove dom_id(@assistment)
-end

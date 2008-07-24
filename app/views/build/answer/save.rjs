@@ -1,4 +1,0 @@
-page.insert_html :bottom, "answers_list", :partial => "answer", :object => @saved
-page.visual_effect :highlight, dom_id(@saved)
-page.sortable("answers_list",:url => { :controller => "build/answer", :action => "order", :problem_id => @saved.problem.id }, :tag => "div", :handle => "handle")
-page.replace_html "answer_form", :partial => "form"

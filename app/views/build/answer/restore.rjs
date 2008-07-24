@@ -1,1 +1,0 @@
-page[dom_id(@answer)].replace :partial => "answer", :locals => {:answer => @answer}

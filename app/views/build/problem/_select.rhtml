@@ -1,9 +1,0 @@
-<% indent ||= "" %>
-<% if select %>
-	<% for problem in select %>
-		<option><%= indent %><%= problem.name %></option>
-		<% if problem.scaffold and problem.scaffold.enabled %>
-			<%= render :partial => "problem/select", :object => problem.scaffold.problems, :locals => { :indent => indent + ">" } %>
-		<% end %>
-	<% end %>
-<% end %>

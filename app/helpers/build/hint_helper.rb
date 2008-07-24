@@ -1,2 +1,0 @@
-module Build::HintHelper
-end

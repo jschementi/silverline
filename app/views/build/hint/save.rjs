@@ -1,4 +1,0 @@
-page.insert_html :bottom, "hints_list", :partial => "hint", :object => @saved
-page.visual_effect :highlight, dom_id(@saved)
-page.sortable("hints_list", :url => {:controller => "build/hint", :action => "reorder"}, :tag => "div", :handle => "handle")
-page['new_hint_form'].reset

@@ -1,8 +1,0 @@
-page.select('#flash_notice_problem_type').each do |value|
-  value.remove
-end
-page.insert_html :bottom, "problem_type_container", render_flash(:notice, {:style => "margin-top: 0px; float: left;", :id => "problem_type" } )
-
-page.delay(5.0) do
-  page.visual_effect :fade, "flash_notice_problem_type"
-end

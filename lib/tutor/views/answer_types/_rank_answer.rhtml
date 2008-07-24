@@ -1,6 +1,0 @@
-<em class="answer_message">Type the correct order of each item (eg. 1, 2, 3, etc)</em>
-<ul class="answers">
-<% for answer in problem.answers.sort_by { rand } %>
-    <li><%= text_field("answer", "#{answer.id}", :size => 1) %> <%= answer.value %></li>
-<% end %>
-</ul>

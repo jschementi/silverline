@@ -1,9 +1,0 @@
-<% session[:incorrect_message_count] ||= 0 %>
-
-<% id = "#{dom_id(problem)}_incorrect_message_#{session[:incorrect_message_count]}"%>
-
-<div class="warning_message" id="<%= id %>">
-	<%= message %> 
-</div>
-
-<% session[:incorrect_message_count] += 1 %>

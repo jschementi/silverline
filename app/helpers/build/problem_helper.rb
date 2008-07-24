@@ -1,2 +1,0 @@
-module Build::ProblemHelper
-end

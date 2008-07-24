@@ -1,4 +1,0 @@
-page[dom_id(@answer)].visual_effect :blind_up, :duration => 0.2
-page.delay(0.2) do
-  page[dom_id(@answer)].remove
-end

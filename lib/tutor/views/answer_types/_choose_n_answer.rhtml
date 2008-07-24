@@ -1,6 +1,0 @@
-<em class="answer_message">Select all that apply:</em>
-<ul class="answers">
-<% for answer in problem.answers %>
-    <li><%= check_box("answer", "#{answer.id}") %><label class="tutor_input_label" for="answer_id_<%= answer.id%>"><%= answer.value %></label></li>
-<% end %>
-</ul>

@@ -1,7 +1,0 @@
-<% form_remote_tag :url => {:controller => "answer", :action => 'update', :id => @answer } do -%>
-	<%= render :partial => "build/answer/form" %>
-	<div class="actions" style="position: relative; bottom: 0px">
-		<%= submit_tag "Save Answer", {:class => "submit button"} %> or
-		<%= link_to_remote "Cancel", {:url => { :controller => "answer", :action => "restore", :id => @answer }}, {:style => "float: none"} %>
-	</div>
-<% end -%>

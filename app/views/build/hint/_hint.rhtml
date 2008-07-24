@@ -1,8 +1,0 @@
-<div class="hint item" id="<%= dom_id(hint) %>">
-    <span><%= hint.value %></span>
-    <span class="actions">
-      <span class="handle">Drag</span>
-      <%= link_to_remote "Edit", {:url => { :controller => "hint", :action => "edit", :id => hint }}, {:class => "edit"} %>
-      <%= link_to_remote "Delete", {:url => { :controller => "hint", :action => "delete", :id => hint }, :confirm => "Are you sure?"}, {:class => "destroy"} %>
-    </span>
-</div>

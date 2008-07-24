@@ -1,1 +1,0 @@
-page[dom_id(@hint)].visual_effect :blind_up

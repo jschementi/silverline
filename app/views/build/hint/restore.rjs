@@ -1,2 +1,0 @@
-page[dom_id(@hint)].replace :partial => "hint", :locals => {:hint => @hint}
-page.sortable("hints_list", :url => {:controller => "build/hint", :action => "reorder"}, :tag => "div", :handle => "handle")
