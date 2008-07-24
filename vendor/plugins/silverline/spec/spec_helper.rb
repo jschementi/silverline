@@ -13,7 +13,7 @@ end
 
 ENV = {} unless defined?(ENV)
 ENV['RAILS_ENV'] = 'test'
-RAILS_ROOT = "/../.." unless defined? RAILS_ROOT
+RAILS_ROOT = File.expand_path(File.dirname(__FILE__) + "/../../../../") unless defined? RAILS_ROOT
 ActionController = Module.new unless defined? ActionController
 ActionController::Base = Class.new unless defined? ActionController::Base
 ActionView = Module.new unless defined? ActionView
