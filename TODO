@@ -1,0 +1,10 @@
+TryRuby:
+- Multi-line statements usually have a blank line at the top 
+  and it makes the scroll bar appear
+- STDOUT needs to be redirected to the console
+- Tutorial needs to be better
+- UI needs to be cleaned up
+
+Overall:
+- For HTML-only apps, need a default loading indicator
+  (like the loading indicator that gmail has)
