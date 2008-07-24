@@ -17,8 +17,8 @@ module Silverline::Essential
 
 end
 
-if ENV['RAILS_ENV'] != 'production' 
-  require 'silverline/essential/generator'
+require 'silverline/essential/generator'
+if ENV['RAILS_ENV'] != 'production'
   Silverline::Essential::Generator.register 
 end
 

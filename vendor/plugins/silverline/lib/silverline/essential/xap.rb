@@ -9,6 +9,12 @@ module Silverline::Essential
     end
   end
   
+  class XAP < XAPBase
+    def generate
+      raise "Implement Me"
+    end
+  end
+  
   if Xap == :chiron
     
     # Handles packaging the Silverlight application with Chiron, a .NET console

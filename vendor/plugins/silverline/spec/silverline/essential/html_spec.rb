@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_nonrails.rb'
+require File.dirname(__FILE__) + '/../../spec_helper.rb'
 
 Silverline.instance_eval{remove_const :Essential} if defined?(Silverline::Essential)
 Silverline::Essential = Module.new
@@ -67,7 +67,7 @@ describe "Private functionality of essential HTML" do
     @html.should_receive(:http_host).and_return "baz"
 
     result = @html.send(:generate_init_params, {:foo => "hi", :bar => "bye", :properties => {:boom => 42}})
-    result.should == "foo=hi, bar=bye, http_host=baz"
+    result.should == "bar=bye, foo=hi, http_host=baz"
   end
 
   it "should know the XAP file location" do

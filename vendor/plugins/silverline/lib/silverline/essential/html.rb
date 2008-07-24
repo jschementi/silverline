@@ -42,7 +42,11 @@ private
 
   def generate_init_params(options)
     options.delete(:properties)
-    p = options.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join(", ")
+    p = options.keys.sort do |x,y| 
+      x.to_s <=> y.to_s
+    end.collect do |k| 
+      "#{k.to_s}=#{options[k].to_s}" 
+    end.join(", ")
     p << ", http_host=#{http_host}"
   end
 

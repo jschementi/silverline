@@ -6,7 +6,7 @@ require 'fileutils'
 require 'silverline/essential/xap'
 
 def logger
-  RAILS_DEFAULT_LOGGER
+  ::RAILS_DEFAULT_LOGGER
 end
 
 # Generates the XAP on modification of watched files

@@ -1,7 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_nonrails.rb'
-
-Silverline.instance_eval{remove_const :Essential} if defined?(Silverline::Essential)
-Silverline::Essential = Module.new
+require File.dirname(__FILE__) + '/../../spec_helper.rb'
 
 Silverline::Essential.instance_eval{remove_const :Xap} if defined?(Silverline::Essential::Xap)
 Silverline::Essential::Xap = :chiron
@@ -16,6 +13,11 @@ describe Silverline::Essential::Generator do
   end
   
   before(:each) do
+    @logger = mock("Logger")
+    @logger.stub!(:info)
+    Object.instance_eval{remove_const :RAILS_DEFAULT_LOGGER} if defined?(::RAILS_DEFAULT_LOGGER)
+    ::RAILS_DEFAULT_LOGGER = @logger
+
     load 'silverline/essential/generator.rb'
   
     Object.instance_eval{ remove_const :FileUtils} if defined?(FileUtils)
