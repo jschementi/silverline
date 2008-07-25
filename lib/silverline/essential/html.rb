@@ -24,7 +24,7 @@ module Silverline::Essential::Html
        retval << %Q(
        <style type='text/css'>
          #SilverlightControlHost {
-         	position: absolute;
+            position: absolute;
          }
        </style>
        )
