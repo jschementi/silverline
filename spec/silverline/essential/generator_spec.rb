@@ -27,13 +27,18 @@ describe Silverline::Essential::Generator do
     FileSystemWatcher.stub!(:new).and_return @watcher
     
     @gen = Silverline::Essential::Generator
+
+    Silverline::Essential.instance_eval{ remove_const :XAP } if defined?(Silverline::Essential::XAP)
+    Silverline::Essential::XAP = mock("XAP")
+    @xap = Silverline::Essential::XAP
+    xap_instance = mock("XAPInstance")
+    @xap.stub!(:new).and_return xap_instance
+    xap_instance.stub!(:generate)
   end
   
   it "should watch directories to put into XAP" do
-    FileUtils = mock("FileUtils")
-    FileUtils.should_receive(:mkdir_p).with(Silverline::TMP_CLIENT)
-    FileUtils.should_receive(:mkdir_p).with(Silverline::CLIENT_ROOT)
-    
+    @gen.should_receive(:create_directories)
+
     @watcher.should_receive(:addDirectory).with(Silverline::CLIENT_ROOT)
     @watcher.should_receive(:addDirectory).with(Silverline::PLUGIN_CLIENT)
     
@@ -49,6 +54,13 @@ describe Silverline::Essential::Generator do
     @gen.should_receive(:generate)
     
     @gen.register
+  end
+
+  it "should create required directories" do
+    FileUtils = mock("FileUtils")
+    FileUtils.should_receive(:mkdir_p).with(Silverline::TMP_CLIENT)
+    FileUtils.should_receive(:mkdir_p).with(Silverline::CLIENT_ROOT)
+    @gen.create_directories
   end
 
   it "should delete the XAP" do

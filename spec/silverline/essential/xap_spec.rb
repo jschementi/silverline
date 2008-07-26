@@ -1,10 +1,13 @@
 require File.dirname(__FILE__) + '/../../spec_helper.rb'
 
-Silverline::Essential.instance_eval{remove_const :Xap} if defined?(Silverline::Essential::Xap)
-Silverline::Essential::Xap = :chiron
+Silverline::Essential.instance_eval{remove_const :XAP} if defined?(Silverline::Essential::XAP)
+
+def define_xap
+  Silverline::Essential.instance_eval{remove_const :Xap} if defined?(Silverline::Essential::Xap)
+end
 
 def prepare_xap(platform = nil)
-  Silverline::Essential.instance_eval{remove_const :Xap} if defined?(Silverline::Essential::Xap)
+  define_xap
   yield
   load 'silverline/essential/xap.rb'
   @xap = Silverline::Essential::XAP.new("foo", "Bar")
@@ -14,6 +17,7 @@ end
 describe "XAPBase" do
   
   it "should initialize itself with a file to XAP to and a directory to XAP" do
+    Silverline::Essential::Xap = :chiron
     load 'silverline/essential/xap.rb'
     xapbase = Silverline::Essential::XAPBase.new("foo", "Bar")
     xapbase.instance_variable_get(:@file) == "foo"
