@@ -63,7 +63,7 @@ module Silverline::Essential
         @assembly_path = "/public/ironruby"
         # Note: Silverlight entry-point assembly must be the first in this list
         # (Microsoft.Scripting.Silverlight in this case)
-        @assemblies = %w(Microsoft.Scripting.Silverlight Microsoft.Scripting.Core Microsoft.Scripting IronRuby IronRuby.Libraries)
+        @assemblies = %w(Microsoft.Scripting.Silverlight Microsoft.Scripting.ExtensionAttribute Microsoft.Scripting.Core Microsoft.Scripting IronRuby IronRuby.Libraries)
         @entry_point_type = "Microsoft.Scripting.Silverlight.DynamicSilverlight"
         file = File.open("#{Silverline::PLUGIN_ROOT}/templates/AppManifest.xaml.erb", 'r'){|f| f.read }
         xaml = ERB.new(file)
