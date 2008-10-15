@@ -1,3 +1,7 @@
+unless defined? ::RAILS_ROOT
+  RAILS_ROOT = File.dirname(__FILE__) + "../"
+end
+
 module Silverline
   RAILS_VIEWS = "#{::RAILS_ROOT}/app/views"
   RAILS_CTRLRS = "#{::RAILS_ROOT}/app/controllers"
