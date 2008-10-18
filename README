@@ -13,14 +13,12 @@ integrated with the rest of the framework.
 http://github.com/jschementi/silverline
 
   > cd /path/to/rails/app/vendor/plugins/
-  > mkdir silverline
-  > cd silverline
   > git clone git://github.com/jschementi/silverline.git
 
 This repository holds the Rails plugin only. To get a demo application using
 Silverline, visit http://github.com/jschementi/silverline-demos.
 
-You'll also need: Silverlight 2 (Beta 2): Windows or Mac
+You'll also need: Silverlight 2 for Windows or Mac
 Note: You can find the developer version of the Silverlight runtime in 
       http://github.com/jschementi/silverlight-installs.
 
