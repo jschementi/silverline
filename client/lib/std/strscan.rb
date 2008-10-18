@@ -1,2 +1,1 @@
-load_assembly 'IronRuby.Libraries', 'Ruby.StandardLibrary.StringScanner'
-
+load_assembly 'IronRuby.Libraries', 'IronRuby.StandardLibrary.StringScanner'

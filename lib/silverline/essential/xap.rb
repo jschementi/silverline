@@ -60,7 +60,7 @@ module Silverline::Essential
     private 
 
       def manifest
-        @assembly_path = "/public/ironruby"
+        @assembly_path = "" #"/public/ironruby"
         # Note: Silverlight entry-point assembly must be the first in this list
         # (Microsoft.Scripting.Silverlight in this case)
         @assemblies = %w(Microsoft.Scripting.Silverlight Microsoft.Scripting.ExtensionAttribute Microsoft.Scripting.Core Microsoft.Scripting IronRuby IronRuby.Libraries)

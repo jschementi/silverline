@@ -5,12 +5,7 @@
   EntryPointType="<%= @entry_point_type %>">
   <Deployment.Parts>
   <% for assembly in @assemblies %>
-	<AssemblyPart source="<%= @assembly_path %>/<%= assembly %>.dll"
-	<% if assembly == @assemblies.first %>
-	  name="<%= assembly %>" />
-	<% else %>
-	  />
-	<% end %>
+    <AssemblyPart source="<%= @assembly_path %>/<%= assembly %>.dll" />
   <% end %>
   </Deployment.Parts>
 </Deployment>
