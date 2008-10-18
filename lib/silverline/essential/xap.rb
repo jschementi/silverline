@@ -24,7 +24,7 @@ module Silverline::Essential
     # Mac/Linux. If you don't want to install mono, use the pure-ruby XAP module.
     class XAP < XAPBase
       def generate
-        cmd = "public/ironruby/Chiron.exe /s /d:#{@directory} /z:#{@file}"
+        cmd = "#{Silverline::PLUGIN_ROOT}/public/ironruby/Chiron.exe /s /d:#{@directory} /z:#{@file}"
         # TODO: Should I do some platform detection rather than trial&error?
         system "#{cmd}" unless system "mono #{cmd}"
       end
